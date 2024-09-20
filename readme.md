@@ -23,32 +23,3 @@ Autenticação: JWT (JSON Web Tokens)
 Hospedagem: Heroku
 Como Executar o Projeto
 Clone o repositório:
-
-bash
-Copiar código
-git clone https://github.com/usuario/loja-social.git
-Instale as dependências do backend:
-
-bash
-Copiar código
-cd backend
-npm install
-Instale as dependências do frontend:
-
-bash
-Copiar código
-cd frontend
-npm install
-Inicie o servidor:
-
-bash
-Copiar código
-npm run dev
-Acesse a aplicação no navegador:
-
-arduino
-Copiar código
-http://localhost:3000
-Contribuições
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e enviar pull requests. Para grandes mudanças, por favor, abra uma issue primeiro para discutirmos o que você gostaria de modificar.
-
