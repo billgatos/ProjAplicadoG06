@@ -55,21 +55,41 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//@Composable
+//fun MainScreen() {
+//    // O estado `currentUserType` precisa estar dentro de uma função @Composable
+//    var currentUserType by remember { mutableStateOf<String?>(null) }
+//
+//    if (currentUserType == "ADM") {
+//        // Ecrã de CRUD
+//        CRUDUtilizadorScreen()
+//    } else {
+//        // Ecrã de login, ao fazer login, atualiza o tipo de utilizador
+//        LoginScreen(onLoginSuccess = { tipo ->
+//            currentUserType = tipo // Aqui atualiza o estado para "ADM" ou "USER"
+//        })
+//    }
+//}
+
 @Composable
 fun MainScreen() {
-    // O estado `currentUserType` precisa estar dentro de uma função @Composable
-    var currentUserType by remember { mutableStateOf<String?>(null) }
+    var currentScreen by remember { mutableStateOf("LOGIN") }
 
-    if (currentUserType == "ADM") {
-        // Ecrã de CRUD
-        CRUDUtilizadorScreen()
-    } else {
-        // Ecrã de login, ao fazer login, atualiza o tipo de utilizador
-        LoginScreen(onLoginSuccess = { tipo ->
-            currentUserType = tipo // Aqui atualiza o estado para "ADM" ou "USER"
-        })
+    when (currentScreen) {
+        "LOGIN" -> {
+            LoginScreen(onLoginSuccess = { tipo ->
+                if (tipo == "ADM") currentScreen = "CRUD"
+            })
+        }
+        "CRUD" -> {
+            CRUDUtilizadorScreen(onVoltarClick = {
+                // Volta para a tela de login ou outra tela
+                currentScreen = "LOGIN"
+            })
+        }
     }
 }
+
 
 
 //@Composable

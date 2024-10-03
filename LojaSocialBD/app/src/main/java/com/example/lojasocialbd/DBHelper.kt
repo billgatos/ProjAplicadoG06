@@ -18,9 +18,9 @@ class DBHelper(context : Context): SQLiteOpenHelper(context,"database.db", null,
         "INSERT INTO utilizador (username, password, nome, id_pesssoa, tipo)" +
                 "values " +
                 "('admin','1234','Roberto','0','ADM')",
-        "INSERT INTO utilizador (username, password, nome, id_pesssoa, tipo)" +
-                "values " +
-                "('user','user','Funcionário 1','0','USER')"
+//        "INSERT INTO utilizador (username, password, nome, id_pesssoa, tipo)" +
+//                "values " +
+//                "('user','user','Funcionário 1','0','USER')"
         )
 
 
