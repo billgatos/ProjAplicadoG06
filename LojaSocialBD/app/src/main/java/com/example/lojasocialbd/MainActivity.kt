@@ -20,87 +20,91 @@ import androidx.compose.runtime.setValue
 import com.example.lojasocialbd.LoginScreen
 import com.example.lojasocialbd.CRUDUtilizadorScreen
 
-
-
-// versão com erro no mutable
-// este bloco pode ser eliminado
-// fernando esteve aqui
-// Roberto também.
-//class MainActivity : ComponentActivity() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContent {
-//            // Estado para armazenar o tipo de utilizador
-//            var currentUserType by remember { mutableStateOf<String?>(null) }
-//
-//            if (currentUserType == "ADM") {
-//                // Se for ADM, vai para o ecrã de CRUD
-//                CRUDUtilizadorScreen()
-//            } else {
-//                // Se não for ADM, mostra o ecrã de login
-//                LoginScreen(onLoginSuccess = { tipo ->
-//                    currentUserType = tipo
-//                })
-//            }
-//        }
-//    }
-//}
-
+import android.os.Handler
+import android.os.Looper
+import androidx.activity.compose.setContent
+import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            // A função remember deve estar dentro do bloco @Composable
-            MainScreen()
+            MainApp()
         }
     }
 }
-
-//@Composable
-//fun MainScreen() {
-//    // O estado `currentUserType` precisa estar dentro de uma função @Composable
-//    var currentUserType by remember { mutableStateOf<String?>(null) }
-//
-//    if (currentUserType == "ADM") {
-//        // Ecrã de CRUD
-//        CRUDUtilizadorScreen()
-//    } else {
-//        // Ecrã de login, ao fazer login, atualiza o tipo de utilizador
-//        LoginScreen(onLoginSuccess = { tipo ->
-//            currentUserType = tipo // Aqui atualiza o estado para "ADM" ou "USER"
-//        })
-//    }
-//}
 
 @Composable
-fun MainScreen() {
-    var currentScreen by remember { mutableStateOf("LOGIN") }
+fun MainApp() {
+    var currentScreen by remember { mutableStateOf("SPLASH") }
 
-    when (currentScreen) {
-        "LOGIN" -> {
-            LoginScreen(onLoginSuccess = { tipo ->
-                if (tipo == "ADM") currentScreen = "CRUD"
-            })
+    // Timer para exibir a splash screen por 2 segundos
+    if (currentScreen == "SPLASH") {
+        SplashScreen {
+            currentScreen = "LOGIN"
         }
-        "CRUD" -> {
-            CRUDUtilizadorScreen(onVoltarClick = {
-                // Volta para a tela de login ou outra tela
-                currentScreen = "LOGIN"
-            })
-        }
+    } else if (currentScreen == "LOGIN") {
+        LoginScreen(onLoginSuccess = { tipo ->
+            if (tipo == "ADM") {
+                currentScreen = "ADMIN_HOME"
+            } else if (tipo == "USER") {
+                currentScreen = "USER_HOME"
+            }
+        })
+    } else if (currentScreen == "ADMIN_HOME") {
+        AdminHomeScreen(onOptionClick = { option ->
+            when (option) {
+                "Utilizadores" -> currentScreen = "CRUD"
+                // Implementar lógica para outros casos
+            }
+        }, onLogoutClick = {
+            currentScreen = "LOGIN"
+        })
+    } else if (currentScreen == "USER_HOME") {
+        UserHomeScreen(onOptionClick = { option ->
+            when (option) {
+                "Visitas" -> { /* Lógica para Visitas */ }
+                "Familia" -> { /* Lógica para Família */ }
+                "Pessoa" -> { /* Lógica para Pessoa */ }
+            }
+        }, onLogoutClick = {
+            currentScreen = "LOGIN"
+        })
+    } else if (currentScreen == "CRUD") {
+        CRUDUtilizadorScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
     }
 }
 
+@Composable
+fun SplashScreen(onSplashFinished: () -> Unit) {
+    // Usar Handler para esperar 2 segundos e então chamar a função de callback
+    LaunchedEffect(Unit) {
+        Handler(Looper.getMainLooper()).postDelayed({
+            onSplashFinished()
+        }, 2000)
+    }
 
+    // Exibição da SplashScreen
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Bem-vindo ao App",
+            fontSize = 32.sp,
+            color = Color.Black,
+            textAlign = TextAlign.Center
+        )
+    }
+}
 
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello $name!",
-//        modifier = modifier
-//    )
-//}
 
 //@Preview(showBackground = true)
 //@Composable
