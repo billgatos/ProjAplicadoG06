@@ -23,7 +23,7 @@ import com.example.lojasocialbd.CRUDUtilizadorScreen
 
 
 // versão com erro no mutable
-
+// este bloco pode ser eliminado
 //class MainActivity : ComponentActivity() {
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
