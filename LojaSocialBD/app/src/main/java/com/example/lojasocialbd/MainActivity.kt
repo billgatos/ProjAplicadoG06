@@ -23,14 +23,18 @@ import com.example.lojasocialbd.CRUDUtilizadorScreen
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,7 +85,6 @@ fun MainApp() {
         CRUDUtilizadorScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
     }
 }
-
 @Composable
 fun SplashScreen(onSplashFinished: () -> Unit) {
     // Usar Handler para esperar 2 segundos e então chamar a função de callback
@@ -91,20 +94,29 @@ fun SplashScreen(onSplashFinished: () -> Unit) {
         }, 2000)
     }
 
-    // Exibição da SplashScreen
+    // Exibição da SplashScreen com uma imagem de fundo
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
+        // Imagem de fundo
+        Image(
+            painter = painterResource(id = R.drawable.splash_background),
+            // Certifique-se de ter a imagem no diretório res/drawable
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+
+        // Texto sobreposto à imagem
         Text(
             text = "Bem-vindo ao App",
             fontSize = 32.sp,
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.Center
         )
     }
 }
-
 
 //@Preview(showBackground = true)
 //@Composable
