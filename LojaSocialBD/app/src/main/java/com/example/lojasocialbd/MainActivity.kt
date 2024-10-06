@@ -45,53 +45,111 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//@Composable
+//fun MainApp() {
+//    var currentScreen by remember { mutableStateOf("SPLASH") }
+//
+//    // Timer para exibir a splash screen por 2 segundos
+//    if (currentScreen == "SPLASH") {
+//        SplashScreen {
+//            currentScreen = "LOGIN"
+//        }
+//    } else if (currentScreen == "LOGIN") {
+//        LoginScreen(onLoginSuccess = { tipo ->
+//            if (tipo == "ADM") {
+//                currentScreen = "ADMIN_HOME"
+//            } else if (tipo == "USER") {
+//                currentScreen = "USER_HOME"
+//            }
+//        })
+//    } else if (currentScreen == "ADMIN_HOME") {
+//        AdminHomeScreen(onOptionClick = { option ->
+//            when (option) {
+//                "Utilizadores" -> currentScreen = "CRUD"
+//                // Implementar lógica para outros casos
+//
+//
+//
+//
+//
+//            }
+//        }, onLogoutClick = {
+//            currentScreen = "LOGIN"
+//        })
+//    } else if (currentScreen == "USER_HOME") {
+//        UserHomeScreen(onOptionClick = { option ->
+//            when (option) {
+//                "Visitas" -> { /* Lógica para Visitas */ }
+//                "Familia" -> { /* Lógica para Família */ }
+//                "Pessoa" -> { /* Lógica para Pessoa */ }
+//            }
+//        }, onLogoutClick = {
+//            currentScreen = "LOGIN"
+//        })
+//    } else if (currentScreen == "CRUD") {
+//        CRUDUtilizadorScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
+//    }
+//}
+
+// nova versão de menus ADMIN e USER com CRUD individual
+
 @Composable
 fun MainApp() {
+    // Controla a navegação entre os ecrãs
     var currentScreen by remember { mutableStateOf("SPLASH") }
 
-    // Timer para exibir a splash screen por 2 segundos
-    if (currentScreen == "SPLASH") {
-        SplashScreen {
+    when (currentScreen) {
+        "SPLASH" -> SplashScreen {
             currentScreen = "LOGIN"
         }
-    } else if (currentScreen == "LOGIN") {
-        LoginScreen(onLoginSuccess = { tipo ->
+        "LOGIN" -> LoginScreen(onLoginSuccess = { tipo ->
             if (tipo == "ADM") {
                 currentScreen = "ADMIN_HOME"
             } else if (tipo == "USER") {
                 currentScreen = "USER_HOME"
             }
         })
-    } else if (currentScreen == "ADMIN_HOME") {
-        AdminHomeScreen(onOptionClick = { option ->
-            when (option) {
-                "Utilizadores" -> currentScreen = "CRUD"
-                // Implementar lógica para outros casos
-            }
-        }, onLogoutClick = {
-            currentScreen = "LOGIN"
-        })
-    } else if (currentScreen == "USER_HOME") {
-        UserHomeScreen(onOptionClick = { option ->
-            when (option) {
-                "Visitas" -> { /* Lógica para Visitas */ }
-                "Familia" -> { /* Lógica para Família */ }
-                "Pessoa" -> { /* Lógica para Pessoa */ }
-            }
-        }, onLogoutClick = {
-            currentScreen = "LOGIN"
-        })
-    } else if (currentScreen == "CRUD") {
-        CRUDUtilizadorScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
+        "ADMIN_HOME" -> AdminHomeScreen(
+            onOptionClick = { option ->
+                currentScreen = when (option) {
+                    "Utilizadores" -> "CRUD_UTILIZADORES"
+                    "Tesouraria" -> "CRUD_TESOURARIA"
+                    "Visitas" -> "CRUD_VISITAS"
+                    "Familia" -> "CRUD_FAMILIA"
+                    "Pessoa" -> "CRUD_PESSOA"
+                    "Voluntario" -> "CRUD_VOLUNTARIO"
+                    else -> "ADMIN_HOME"
+                }
+            },
+            onLogoutClick = { currentScreen = "LOGIN" }
+        )
+        "USER_HOME" -> UserHomeScreen(
+            onOptionClick = { option ->
+                currentScreen = when (option) {
+                    "Visitas" -> "CRUD_VISITAS"
+                    "Familia" -> "CRUD_FAMILIA"
+                    "Pessoa" -> "CRUD_PESSOA"
+                    else -> "USER_HOME"
+                }
+            },
+            onLogoutClick = { currentScreen = "LOGIN" }
+        )
+        "CRUD_UTILIZADORES" -> CRUDUtilizadorScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
+        "CRUD_TESOURARIA" -> CRUDTesourariaScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
+        "CRUD_VISITAS" -> CRUDVisitasScreen(onVoltarClick = { currentScreen = if (currentScreen == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
+        "CRUD_FAMILIA" -> CRUDFamiliaScreen(onVoltarClick = { currentScreen = if (currentScreen == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
+        "CRUD_PESSOA" -> CRUDPessoaScreen(onVoltarClick = { currentScreen = if (currentScreen == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
+        "CRUD_VOLUNTARIO" -> CRUDVoluntarioScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
     }
 }
+
 @Composable
 fun SplashScreen(onSplashFinished: () -> Unit) {
     // Usar Handler para esperar 2 segundos e então chamar a função de callback
     LaunchedEffect(Unit) {
         Handler(Looper.getMainLooper()).postDelayed({
             onSplashFinished()
-        }, 2000)
+        }, 4000)
     }
 
     // Exibição da SplashScreen com uma imagem de fundo
@@ -110,7 +168,7 @@ fun SplashScreen(onSplashFinished: () -> Unit) {
 
         // Texto sobreposto à imagem
         Text(
-            text = "Bem-vindo ao App",
+            text = "Bem-vindo à Social Store App",
             fontSize = 32.sp,
             color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.Center
