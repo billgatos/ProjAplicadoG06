@@ -97,6 +97,7 @@ class MainActivity : ComponentActivity() {
 fun MainApp() {
     // Controla a navegação entre os ecrãs
     var currentScreen by remember { mutableStateOf("SPLASH") }
+    var currentScreenType by remember { mutableStateOf("") }
 
     when (currentScreen) {
         "SPLASH" -> SplashScreen {
@@ -105,8 +106,11 @@ fun MainApp() {
         "LOGIN" -> LoginScreen(onLoginSuccess = { tipo ->
             if (tipo == "ADM") {
                 currentScreen = "ADMIN_HOME"
+                currentScreenType = "ADMIN_HOME"
+
             } else if (tipo == "USER") {
                 currentScreen = "USER_HOME"
+                currentScreenType = "USER_HOME"
             }
         })
         "ADMIN_HOME" -> AdminHomeScreen(
@@ -136,9 +140,9 @@ fun MainApp() {
         )
         "CRUD_UTILIZADORES" -> CRUDUtilizadorScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
         "CRUD_TESOURARIA" -> CRUDTesourariaScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
-        "CRUD_VISITAS" -> CRUDVisitasScreen(onVoltarClick = { currentScreen = if (currentScreen == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
-        "CRUD_FAMILIA" -> CRUDFamiliaScreen(onVoltarClick = { currentScreen = if (currentScreen == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
-        "CRUD_PESSOA" -> CRUDPessoaScreen(onVoltarClick = { currentScreen = if (currentScreen == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
+        "CRUD_VISITAS" -> CRUDVisitasScreen(onVoltarClick = { currentScreen = if (currentScreenType == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
+        "CRUD_FAMILIA" -> CRUDFamiliaScreen(onVoltarClick = { currentScreen = if (currentScreenType == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
+        "CRUD_PESSOA" -> CRUDPessoaScreen(onVoltarClick = { currentScreen = if (currentScreenType == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
         "CRUD_VOLUNTARIO" -> CRUDVoluntarioScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
     }
 }
