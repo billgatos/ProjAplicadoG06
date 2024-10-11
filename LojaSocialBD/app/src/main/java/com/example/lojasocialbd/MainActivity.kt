@@ -96,7 +96,7 @@ fun SplashScreen(onSplashFinished: () -> Unit) {
     LaunchedEffect(Unit) {
         Handler(Looper.getMainLooper()).postDelayed({
             onSplashFinished()
-        }, 4000)
+        }, 1500)
     }
 
     // Exibição da SplashScreen com uma imagem de fundo
@@ -109,13 +109,14 @@ fun SplashScreen(onSplashFinished: () -> Unit) {
             painter = painterResource(id = R.drawable.splash_background),
             // Certifique-se de ter a imagem no diretório res/drawable
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            //contentScale = ContentScale.Crop,  //corta imagem para caber na tela
+            contentScale = ContentScale.Fit,    // ajusta a imagem para caber na tela
             modifier = Modifier.fillMaxSize()
         )
 
         // Texto sobreposto à imagem
         Text(
-            text = "Bem-vindo à Social Store App",
+            text = "Bem-vindo à High Tech social App",
             fontSize = 32.sp,
             color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.Center
