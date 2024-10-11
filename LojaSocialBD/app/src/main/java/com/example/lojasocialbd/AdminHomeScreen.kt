@@ -48,6 +48,9 @@ fun AdminHomeScreen(onOptionClick: (String) -> Unit, onLogoutClick: () -> Unit) 
             Text("Voluntário")
         }
 
+        Button(onClick = { onOptionClick("Relatórios") }) {
+            Text("Relatórios")
+        }
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(onClick = { onLogoutClick() }, colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.error)) {
