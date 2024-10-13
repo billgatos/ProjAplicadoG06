@@ -120,7 +120,7 @@ fun SplashScreen(onSplashFinished: () -> Unit) {
 
         // Texto sobreposto à imagem
         Text(
-            text = "Bem-vindo à High Tech social App",
+            text = "High Tech Social App",
             fontSize = 32.sp,
             color = Color(0xFF00008B), //aZUL eSCURO
             textAlign = TextAlign.Center,

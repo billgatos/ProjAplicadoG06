@@ -15,11 +15,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.lojasocialbd.ui.theme.LojaSocialBDTheme
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 
 //class MainActivity : ComponentActivity() {
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,58 +40,150 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit, viewModel: LoginViewModel = vi
     var password by remember { mutableStateOf("") }
     var loginError by remember { mutableStateOf(false) }
 
-    Column(
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//    ) {
+//        Column(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(16.dp),
+//            //.align(Alignment.Center),
+//            verticalArrangement = Arrangement.Center,
+//            horizontalAlignment = Alignment.CenterHorizontally
+//
+//        ) {
+//            // Cabeçalho com o logo
+//            LogoHeader()
+//            Text(text = "Login", style = MaterialTheme.typography.headlineLarge)
+//
+//            Spacer(modifier = Modifier.height(16.dp))
+//
+//            TextField(
+//                value = username,
+//                onValueChange = { username = it },
+//                label = { Text("Username") },
+//                modifier = Modifier.fillMaxWidth()
+//            )
+//
+//            Spacer(modifier = Modifier.height(16.dp))
+//
+//            TextField(
+//                value = password,
+//                onValueChange = { password = it },
+//                label = { Text("Password") },
+//                visualTransformation = PasswordVisualTransformation(),
+//                modifier = Modifier.fillMaxWidth()
+//            )
+//
+//            Spacer(modifier = Modifier.height(16.dp))
+//
+//            Button(
+//                onClick = {
+//                    val userType = viewModel.login(username, password)
+//                    if (userType != null) {
+//                        onLoginSuccess(userType) // Sucesso no login
+//                    } else {
+//                        loginError = true // Erro no login
+//                    }
+//                },
+//                modifier = Modifier.fillMaxWidth()
+//            ) {
+//                Text(text = "Login")
+//            }
+//
+//            if (loginError) {
+//                Spacer(modifier = Modifier.height(16.dp))
+//                Text(
+//                    text = "Login falhou. Tente novamente.",
+//                    color = MaterialTheme.colorScheme.error
+//                )
+//            }
+//        }
+//    }
+
+    //versao 2
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Cabeçalho com o logo
-        LogoHeader()
-        Text(text = "Login", style = MaterialTheme.typography.headlineLarge)
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        TextField(
-            value = username,
-            onValueChange = { username = it },
-            label = { Text("Username") },
-            modifier = Modifier.fillMaxWidth()
+        // Imagem de fundo
+        Image(
+            painter = painterResource(id = R.drawable.portrait_transparent_image),
+            // Insira o nome correto da sua imagem aqui
+            contentDescription = "Loja Social Logo",
+            modifier = Modifier
+                .fillMaxSize()
+                .align(Alignment.Center)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        TextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Password") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = {
-                val userType = viewModel.login(username, password)
-                if (userType != null) {
-                    onLoginSuccess(userType) // Sucesso no login
-                } else {
-                    loginError = true // Erro no login
-                }
-            },
-            modifier = Modifier.fillMaxWidth()
+        // Conteúdo sobreposto
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .align(Alignment.Center), // Alinha a coluna ao centro
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Login")
-        }
+            // Texto sobreposto à imagem
+            Text(
+                text = "Bem-vindo à High Tech Social App",
+                fontSize = 32.sp,
+                //color = MaterialTheme.colorScheme.onPrimary,
+                color = Color(0xFF00008B), //aZUL eSCURO
+                textAlign = TextAlign.Center
+            )
 
-        if (loginError) {
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = "Login falhou. Tente novamente.", color = MaterialTheme.colorScheme.error)
+
+            //Text(text = "Login", style = MaterialTheme.typography.headlineLarge)
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = username,
+                onValueChange = { username = it },
+                label = { Text("Username") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("Password") },
+                visualTransformation = PasswordVisualTransformation(),
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    val userType = viewModel.login(username, password)
+                    if (userType != null) {
+                        onLoginSuccess(userType) // Sucesso no login
+                    } else {
+                        loginError = true // Erro no login
+                    }
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Login")
+            }
+
+            if (loginError) {
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(text = "Login falhou. Tente novamente.", color = MaterialTheme.colorScheme.error)
+            }
         }
     }
-}
 
+
+
+}
 @Composable
 fun LogoHeader() {
     // Exibição da imagem/logo no topo
@@ -100,7 +192,7 @@ fun LogoHeader() {
         // Insira aqui o nome correto da imagem para fundo
         contentDescription = "Loja Social Logo",
         modifier = Modifier
-            .fillMaxWidth()
+
             .height(150.dp) // Altura da imagem ajustável
     )
 }
