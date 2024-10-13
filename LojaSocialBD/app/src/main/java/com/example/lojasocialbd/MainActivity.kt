@@ -18,12 +18,12 @@ import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -122,8 +122,11 @@ fun SplashScreen(onSplashFinished: () -> Unit) {
         Text(
             text = "Bem-vindo à High Tech social App",
             fontSize = 32.sp,
-            color = MaterialTheme.colorScheme.onPrimary,
-            textAlign = TextAlign.Center
+            color = Color(0xFF00008B), //aZUL eSCURO
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 200.dp)
         )
     }
 }
