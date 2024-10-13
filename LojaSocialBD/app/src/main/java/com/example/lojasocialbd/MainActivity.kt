@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 
@@ -111,7 +112,10 @@ fun SplashScreen(onSplashFinished: () -> Unit) {
             contentDescription = null,
             //contentScale = ContentScale.Crop,  //corta imagem para caber na tela
             contentScale = ContentScale.Fit,    // ajusta a imagem para caber na tela
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .align(Alignment.Center)
+                .size(200.dp)
         )
 
         // Texto sobreposto à imagem
