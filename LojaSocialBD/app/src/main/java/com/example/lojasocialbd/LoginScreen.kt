@@ -144,7 +144,7 @@ fun LoginScreen(onLoginSuccess: (String) -> Unit, viewModel: LoginViewModel = vi
             TextField(
                 value = username,
                 onValueChange = { username = it },
-                label = { Text("Username") },
+                label = { Text("Utilizador") },
                 modifier = Modifier.fillMaxWidth()
             )
 
