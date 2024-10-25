@@ -16,7 +16,6 @@ import android.os.Looper
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -33,6 +32,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
 
 
 @Composable
@@ -65,6 +66,7 @@ fun MainApp() {
                     "Pessoa" -> "CRUD_PESSOA"
                     "Voluntario" -> "CRUD_VOLUNTARIO"
                     "Relatórios" -> "Ecr_RelatorioVisitasScreen"
+                    "Agenda" -> "AgendaScreen"
                     else -> "ADMIN_HOME"
                 }
             },
@@ -88,6 +90,8 @@ fun MainApp() {
         "CRUD_PESSOA" -> CRUDPessoaScreen(onVoltarClick = { currentScreen = if (currentScreenType == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
         "Ecr_RelatorioVisitasScreen" -> RelatorioVisitasScreen(onVoltarClick = { currentScreen = if (currentScreenType == "USER_HOME") "USER_HOME" else "ADMIN_HOME" })
         "CRUD_VOLUNTARIO" -> CRUDVoluntarioScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
+        "CRUDAgendaScreen" -> CRUDAgendaScreen(onVoltarClick = { currentScreen = "ADMIN_HOME" })
+
     }
 }
 
