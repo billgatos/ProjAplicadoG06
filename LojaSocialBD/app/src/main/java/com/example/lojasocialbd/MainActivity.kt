@@ -66,7 +66,7 @@ fun MainApp() {
                     "Pessoa" -> "CRUD_PESSOA"
                     "Voluntario" -> "CRUD_VOLUNTARIO"
                     "Relatórios" -> "Ecr_RelatorioVisitasScreen"
-                    "Agenda" -> "AgendaScreen"
+                    "Agenda" -> "CRUDAgendaScreen"
                     else -> "ADMIN_HOME"
                 }
             },

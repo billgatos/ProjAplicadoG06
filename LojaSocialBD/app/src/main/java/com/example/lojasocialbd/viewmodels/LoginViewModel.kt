@@ -1,4 +1,4 @@
-package com.example.lojasocialbd
+package com.example.lojasocialbd.viewmodels
 
 import androidx.lifecycle.ViewModel
 

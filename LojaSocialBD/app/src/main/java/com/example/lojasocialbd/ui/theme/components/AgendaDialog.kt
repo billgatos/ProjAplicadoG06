@@ -1,4 +1,4 @@
-package com.example.lojasocialbd
+package com.example.lojasocialbd.ui.theme.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -6,7 +6,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import com.example.lojasocialbd.Agenda
+import com.example.lojasocialbd.models.Agenda
 import java.time.LocalDateTime
 
 @Composable

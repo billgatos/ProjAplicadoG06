@@ -1,4 +1,4 @@
-    package com.example.lojasocialbd
+    package com.example.lojasocialbd.models
 
     class Utilizador(
         val id: Int =0, var username: String ="", var password: String = "",

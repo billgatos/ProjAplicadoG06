@@ -1,4 +1,4 @@
-package com.example.lojasocialbd
+package com.example.lojasocialbd.ui.theme.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -10,11 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.lojasocialbd.Agenda
+import com.example.lojasocialbd.models.Agenda
 import java.time.format.DateTimeFormatter
 
 @Composable
-fun AgendaItem(agenda: Agenda, onEdit: () -> Unit, onDelete: () -> Unit) {
+fun AgendaItem(
+    agenda: Agenda,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit,
+    onAddVoluntario: () -> Unit
+) {
     Card(
         modifier = Modifier.fillMaxWidth().padding(4.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
@@ -35,6 +40,9 @@ fun AgendaItem(agenda: Agenda, onEdit: () -> Unit, onDelete: () -> Unit) {
             }
             IconButton(onClick = onDelete) {
                 Icon(Icons.Default.Delete, contentDescription = "Deletar")
+            }
+            IconButton(onClick = onAddVoluntario) {
+                Icon(Icons.Default.Edit, contentDescription = "Adicionar Voluntário")
             }
         }
     }
