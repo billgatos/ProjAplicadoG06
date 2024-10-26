@@ -1,8 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-
+    //id("com.android.application")
+    //id("org.jetbrains.kotlin.android")
+    //id("com.google.devtools.ksp") // KSP plugin should be applied after Kotlin Android
+    //id("com.google.devtools.ksp") version "1.8.21-1.0.11" // Use the latest KSP version
 }
+
+
+
 
 android {
     namespace = "com.example.lojasocialbd"
@@ -51,7 +57,7 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.5.0"
+    val composeVersion = "1.5.1"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -70,15 +76,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Dependência para ViewModel com Jetpack Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha03")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
 
     // Jetpack Compose
     implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.material3:material3:1.0.1")
+    implementation("androidx.compose.material3:material3:1.3.0")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    implementation("androidx.activity:activity-compose:1.7.0")
+    implementation("androidx.activity:activity-compose:1.9.3")
 
     // Para o gerenciamento de estado e o uso de mutableStateOf
     implementation("androidx.compose.runtime:runtime:$composeVersion")
-
+    // adição do ksp
+    //implementation("com.google.devtools.ksp:symbol-processing-api:1.8.21-1.0.11")
+    //ksp("androidx.room:room-compiler:2.5.1")
 }
