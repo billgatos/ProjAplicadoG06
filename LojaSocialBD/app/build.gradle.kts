@@ -1,13 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
     //id("com.android.application")
     //id("org.jetbrains.kotlin.android")
-    //id("com.google.devtools.ksp") // KSP plugin should be applied after Kotlin Android
-    //id("com.google.devtools.ksp") version "1.8.21-1.0.11" // Use the latest KSP version
+    //id("com.google.devtools.ksp") version "1.8.0-1.0.9"
 }
 
-
+//apply plugin: "com.google.devtools.ksp"
 
 
 android {
@@ -57,8 +57,9 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.5.1"
+    val composeVersion = "1.7.5"
 
+    implementation(kotlin("script-runtime"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -76,17 +77,27 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Dependência para ViewModel com Jetpack Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // Jetpack Compose
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.material3:material3:1.3.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    implementation("androidx.activity:activity-compose:1.9.3")
+    implementation(libs.ui)
+    implementation(libs.material3)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.androidx.activity.compose.v193)
 
     // Para o gerenciamento de estado e o uso de mutableStateOf
-    implementation("androidx.compose.runtime:runtime:$composeVersion")
+    implementation(libs.androidx.runtime)
+
     // adição do ksp
-    //implementation("com.google.devtools.ksp:symbol-processing-api:1.8.21-1.0.11")
-    //ksp("androidx.room:room-compiler:2.5.1")
+    val room_version = "2.6.1" // Check for the latest version
+
+    implementation(libs.androidx.room.runtime)
+    //kapt("androidx.room:room-compiler:$room_version") // Use kapt for Kotlin
+    //ksp("androidx.room:room-compiler:2.5.0") // Use ksp ao invés de kapt
+    implementation(libs.androidx.room.ktx) // Optional - Kotlin Extensions and Coroutines support for Room
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0") // or any latest stable version
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0") // or any latest stable version
+
+
 }

@@ -24,15 +24,62 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+import androidx.lifecycle.lifecycleScope
+import com.example.lojasocialbd.database.AppDatabase
+import com.example.lojasocialbd.models.Utilizador
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+
+
+// Antiga MainActivity
+
+//class MainActivity : ComponentActivity() {
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContent {
+//            MainApp()
+//        }
+//    }
+//}
+
+// Nova MainActivity
+
 class MainActivity : ComponentActivity() {
+    private lateinit var database: AppDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        database = AppDatabase.getDatabase(this)
+        checkAndInsertDefaultAdmin()
+
         setContent {
             MainApp()
         }
     }
-}
 
+    private fun checkAndInsertDefaultAdmin() {
+        lifecycleScope.launch {
+            val utilizadorDao = database.utilizadorDao()
+            val count = withContext(Dispatchers.IO) {
+                utilizadorDao.countUtilizadores()
+            }
+
+            if (count == 0) {
+                // Table is empty, insert default admin user
+                val adminUser  = Utilizador(
+                    username = "admin",
+                    password = "admin123",
+                    tipo = "ADMIN"
+                )
+                withContext(Dispatchers.IO) {
+                    utilizadorDao.insert(adminUser )
+                }
+            }
+        }
+    }
+}
 
 
 
