@@ -82,7 +82,6 @@ class MainActivity : ComponentActivity() {
 }
 
 
-
 @Composable
 fun MainApp() {
     // Controla a navegação entre os ecrãs
@@ -104,9 +103,11 @@ fun MainApp() {
             }
         })
         "ADMIN_HOME" -> AdminHomeScreen(
+
             onOptionClick = { option ->
                 currentScreen = when (option) {
                     "Utilizadores" -> "CRUD_UTILIZADORES"
+                    //navController.navigate(
                     "Tesouraria" -> "CRUD_TESOURARIA"
                     "Visitas" -> "CRUD_VISITAS"
                     "Familia" -> "CRUD_FAMILIA"
