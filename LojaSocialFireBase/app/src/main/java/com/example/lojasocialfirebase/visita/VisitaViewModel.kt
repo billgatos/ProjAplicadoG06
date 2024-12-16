@@ -1,6 +1,5 @@
 package com.example.lojasocialfirebase.visita
 
-
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Date
