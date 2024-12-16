@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.lojasocialfirebase.models.Familia
 import com.example.lojasocialfirebase.ui.theme.CustomTextField
+import com.example.lojasocialfirebase.ui.theme.buttonColor
 
 @Composable
 fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
@@ -64,7 +65,7 @@ fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Blue)
+                colors = ButtonDefaults.buttonColors(containerColor = buttonColor)
             ) {
                 Text("Registrar Família", color = Color.White)
             }
