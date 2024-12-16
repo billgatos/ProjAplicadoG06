@@ -11,6 +11,10 @@ class AuthViewModel : ViewModel() {
     var userType: String? = null
         private set
 
+    // Propriedade para obter o e-mail do usuário logado
+    val currentUserEmail: String?
+        get() = auth.currentUser?.email
+
     fun registerUser(email: String, password: String, onComplete: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -44,4 +48,9 @@ class AuthViewModel : ViewModel() {
             onComplete(false)
         }
     }
+
+    fun logoutUser() {
+        auth.signOut()
+    }
+
 }
