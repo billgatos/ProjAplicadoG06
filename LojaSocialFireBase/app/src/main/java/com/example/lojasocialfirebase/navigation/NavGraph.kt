@@ -8,6 +8,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.lojasocialfirebase.auth.*
 import com.example.lojasocialfirebase.dashboard.DashboardViewModel
 import com.example.lojasocialfirebase.ui.dashboard.DashboardScreen
+import com.example.lojasocialfirebase.viewmodel.FamiliaViewModel
+import com.example.lojasocialfirebase.viewmodel.RegisterFamiliaScreen
 import com.example.lojasocialfirebase.visita.*
 
 @Composable
@@ -16,6 +18,7 @@ fun AppNavHost() {
     val authViewModel = AuthViewModel()
     val visitaViewModel = VisitaViewModel()
     val dashboardViewModel = DashboardViewModel()
+    val familiaViewModel = FamiliaViewModel()
 
     // Função de logout
     val onLogout = {
@@ -41,6 +44,11 @@ fun AppNavHost() {
         composable("registerVisita") {
             MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) { modifier ->
                 RegisterVisitaScreen(visitaViewModel)
+            }
+        }
+        composable("registerFamilia") {
+            MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) { modifier ->
+                RegisterFamiliaScreen(familiaViewModel)
             }
         }
     }

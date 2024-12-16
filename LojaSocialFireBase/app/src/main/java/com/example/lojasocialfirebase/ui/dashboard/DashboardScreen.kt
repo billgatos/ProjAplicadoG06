@@ -39,6 +39,7 @@ fun DashboardScreen(navController: NavController, dashboardViewModel: DashboardV
                 modifier = Modifier.padding(bottom = 24.dp)
             )
 
+            // Renderizando as opções do dashboardViewModel
             dashboardViewModel.options.forEach { option ->
                 Card(
                     shape = RoundedCornerShape(8.dp),
@@ -65,3 +66,4 @@ fun DashboardScreen(navController: NavController, dashboardViewModel: DashboardV
         }
     }
 }
+
