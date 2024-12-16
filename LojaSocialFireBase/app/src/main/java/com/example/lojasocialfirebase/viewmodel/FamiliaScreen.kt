@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.lojasocialfirebase.models.Familia
+import com.example.lojasocialfirebase.ui.theme.CustomTextField
 
 @Composable
 fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
@@ -81,14 +82,4 @@ fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
             )
         }
     }
-}
-
-@Composable
-fun CustomTextField(value: String, onValueChange: (String) -> Unit, label: String) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        label = { Text(label) },
-        modifier = Modifier.fillMaxWidth()
-    )
 }
