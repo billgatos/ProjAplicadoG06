@@ -42,7 +42,12 @@ val backgroundColor = Color(0xFFF1F8E9)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomTextField(value: String, onValueChange: (String) -> Unit, label: String) {
+fun CustomTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    modifier: Modifier = Modifier // Adiciona o parâmetro modifier com valor padrão
+) {
     val lightGreen = Color(0xFFA8E6CF)
     val borderColor = Color(0xFF56C596)
 
@@ -57,11 +62,12 @@ fun CustomTextField(value: String, onValueChange: (String) -> Unit, label: Strin
             cursorColor = borderColor
         ),
         shape = RoundedCornerShape(8.dp),
-        modifier = Modifier
+        modifier = modifier // Aplica o modifier passado como parâmetro
             .fillMaxWidth()
             .padding(vertical = 8.dp)
     )
 }
+
 
 
 
