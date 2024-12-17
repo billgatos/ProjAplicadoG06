@@ -2,6 +2,7 @@ package com.example.lojasocialfirebase.voluntario
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.lojasocialfirebase.pessoa.Pessoa
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.launch
@@ -22,6 +23,23 @@ class VoluntarioViewModel : ViewModel() {
                 e.printStackTrace()
                 onResult(false)
             }
+        }
+    }
+
+    // Função para buscar todas as pessoas
+    suspend fun getVoluntarios(): List<Voluntario> {
+        return try {
+            val snapshot = db.collection("voluntarios").get().await()
+            snapshot.documents.map { document ->
+                Voluntario(
+                    idVoluntario = document.id,
+                    pessoaId = document.getString("pessoaId") ?: "",
+                    nomeVoluntario = document.getString("nomeVoluntario") ?: ""
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
         }
     }
 }
