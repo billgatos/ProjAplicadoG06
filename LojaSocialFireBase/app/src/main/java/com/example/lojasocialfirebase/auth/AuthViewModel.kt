@@ -20,6 +20,7 @@ class AuthViewModel : ViewModel() {
             if (task.isSuccessful) {
                 val userId = auth.currentUser?.uid ?: return@addOnCompleteListener
                 db.collection("users").document(userId).set(mapOf("type" to "user"))
+                db.collection("users").document(userId).set(mapOf("email" to email))
                 onComplete(true)
             } else {
                 onComplete(false)
@@ -61,22 +62,19 @@ class AuthViewModel : ViewModel() {
             .addOnFailureListener { onComplete(false) }
     }
 
-    fun fetchUserByEmail(email: String, onComplete: (String?, Boolean) -> Unit) {
-        db.collection("users").whereEqualTo("email", email).get()
-            .addOnSuccessListener { documents ->
-                if (!documents.isEmpty) {
-                    val document = documents.documents[0]
-                    val userId = document.id
-                    onComplete(userId, true)
+    fun fetchUserByEmail(email: String, onComplete: (String, Boolean) -> Unit) {
+        db.collection("users").document(email).get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    onComplete(email, true)  // Retorna o email como ID
                 } else {
-                    onComplete(null, false)
+                    onComplete("", false)   // Indica falha ao encontrar
                 }
             }
             .addOnFailureListener {
-                onComplete(null, false)
+                onComplete("", false)       // Em caso de erro
             }
     }
-
 
     fun logoutUser() {
         auth.signOut()

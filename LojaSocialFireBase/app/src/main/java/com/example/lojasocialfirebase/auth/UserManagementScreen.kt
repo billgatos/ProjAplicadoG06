@@ -86,6 +86,8 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
                 visualTransformation = PasswordVisualTransformation()
             )
             Spacer(modifier = Modifier.height(16.dp))
+
+            // Botão para gravar dados do utilizador
             Button(onClick = {
                 viewModel.registerUser(email, password) { success ->
                     message = if (success) "Usuário criado com sucesso!" else "Erro ao criar usuário!"
@@ -108,7 +110,7 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Button(onClick = {
-                viewModel.fetchUserByEmail(email) { id, success ->
+                viewModel.fetchUserByEmail(email) { id ,success ->
                     if (success) {
                         userId = id
                         message = "Utilizador encontrado! Modifique os dados abaixo."
