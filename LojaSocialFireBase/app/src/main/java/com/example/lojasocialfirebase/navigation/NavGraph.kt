@@ -1,16 +1,22 @@
 package com.example.lojasocialfirebase.navigation
 
+import PessoaViewModel
 import RegisterVisitaScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.lojasocialfirebase.auth.*
+import com.example.lojasocialfirebase.calendario.CalendarViewModel
 import com.example.lojasocialfirebase.dashboard.DashboardViewModel
-import com.example.lojasocialfirebase.ui.dashboard.DashboardScreen
+import com.example.lojasocialfirebase.dashboard.DashboardScreen
 import com.example.lojasocialfirebase.familia.FamiliaViewModel
 import com.example.lojasocialfirebase.familia.RegisterFamiliaScreen
+import com.example.lojasocialfirebase.pessoa.RegisterPessoaScreen
 import com.example.lojasocialfirebase.visita.*
+import com.example.lojasocialfirebase.voluntario.AdminCalendarScreen
+import com.example.lojasocialfirebase.voluntario.RegisterVoluntarioScreen
+import com.example.lojasocialfirebase.voluntario.VoluntarioViewModel
 
 @Composable
 fun AppNavHost() {
@@ -19,6 +25,9 @@ fun AppNavHost() {
     val visitaViewModel = VisitaViewModel()
     val dashboardViewModel = DashboardViewModel()
     val familiaViewModel = FamiliaViewModel()
+    val pessoaViewModel = PessoaViewModel()
+    val voluntarioViewModel = VoluntarioViewModel()
+    val calendarViewModel = CalendarViewModel()
 
     // Função de logout
     val onLogout = {
@@ -54,6 +63,21 @@ fun AppNavHost() {
         composable("userManagement") {
             MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) { modifier ->
                 UserManagementScreen(authViewModel)
+            }
+        }
+        composable("registerPessoas") {
+            MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) { modifier ->
+                RegisterPessoaScreen(pessoaViewModel, familiaViewModel)
+            }
+        }
+        composable("registerVoluntario") {
+            MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) { modifier ->
+                RegisterVoluntarioScreen(voluntarioViewModel, pessoaViewModel)
+            }
+        }
+        composable("aprovarCalendario") {
+            MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) { modifier ->
+                AdminCalendarScreen(calendarViewModel)
             }
         }
     }
