@@ -18,7 +18,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.lojasocialfirebase.models.Familia
 import com.example.lojasocialfirebase.ui.theme.CustomTextField
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
 import com.example.lojasocialfirebase.ui.theme.buttonColor
+import com.example.lojasocialfirebase.ui.theme.textColor
 
 @Composable
 fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
@@ -28,7 +30,7 @@ fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
     var dialogMessage by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
-        containerColor = Color.White
+        containerColor = backgroundColor
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -39,7 +41,8 @@ fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
         ) {
             Text(
                 text = "Registrar Família",
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.headlineMedium,
+                color = textColor
             )
 
             Spacer(modifier = Modifier.height(24.dp))
