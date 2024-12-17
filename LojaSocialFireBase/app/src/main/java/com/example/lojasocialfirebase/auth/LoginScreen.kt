@@ -66,7 +66,7 @@ fun LoginScreen(authViewModel: AuthViewModel, onLoginSuccess: () -> Unit) {
                 value = password,
                 onValueChange = { password = it },
                 label = "Password",
-                isPassword = true  // Define que é um campo de senha
+                isPassword = true  // Define que é um campo de senha,
             )
 
             Spacer(modifier = Modifier.height(24.dp))

@@ -1,6 +1,5 @@
 package com.example.lojasocialfirebase.auth
 
-import androidx.compose.foundation.Image
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,8 +13,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.buttonColor
+import com.example.lojasocialfirebase.ui.theme.textColor
 
 
 @Composable
@@ -28,42 +29,59 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
     var newEmail by remember { mutableStateOf("") }
     var message by remember { mutableStateOf("") }
 
+
+    Scaffold(
+        containerColor = backgroundColor
+    ) { paddingValues ->
     Column(
         modifier = Modifier
+            .padding(paddingValues)
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Título
-        Text("Gestão de Usuários")//, style = MaterialTheme.typography.h5)
+        Text("Gestão de Utilizadores",
+            style = MaterialTheme.typography.headlineMedium,
+            color = textColor)
 
         // Opções: Criar, Buscar/Modificar
         Row(modifier = Modifier.padding(vertical = 16.dp)) {
-            Button(onClick = { selectedOption = "create" }) {
-                Text("Criar Usuário")
+            Button(onClick = { selectedOption = "create" },
+                colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
+                shape = RoundedCornerShape(8.dp),)
+            {
+                Text("Criar Utilizador",
+                    color = Color.White)
             }
             Spacer(modifier = Modifier.width(8.dp))
-            Button(onClick = { selectedOption = "modify" }) {
-                Text("Buscar/Modificar Usuário")
+            Button(onClick = { selectedOption = "modify" },
+                colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
+                shape = RoundedCornerShape(8.dp),)
+            {
+                Text("Buscar / Modificar Utilizador",
+                    color = Color.White)
             }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Tela de Criação de Usuário
+        // Tela de Criação de Utilizador
         if (selectedOption == "create") {
             TextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text("Email") },
+                label = { Text("Email",
+                    color = Color.White) },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
             TextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text("Senha") },
+                label = { Text("Senha",
+                        color =Color.White)},
                 modifier = Modifier.fillMaxWidth(),
                 visualTransformation = PasswordVisualTransformation()
             )
@@ -71,13 +89,16 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
             Button(onClick = {
                 viewModel.registerUser(email, password) { success ->
                     message = if (success) "Usuário criado com sucesso!" else "Erro ao criar usuário!"
-                }
-            }) {
-                Text("Criar Usuário")
+                }},
+                colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Text("Gravar dados Utilizador",
+                    color = Color.White)
             }
         }
 
-        // Tela de Modificação de Usuário
+        // Tela de Modificação de Utilizador
         if (selectedOption == "modify") {
             TextField(
                 value = email,
@@ -90,13 +111,13 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
                 viewModel.fetchUserByEmail(email) { id, success ->
                     if (success) {
                         userId = id
-                        message = "Usuário encontrado! Modifique os dados abaixo."
+                        message = "Utilizador encontrado! Modifique os dados abaixo."
                     } else {
-                        message = "Usuário não encontrado!"
+                        message = "Utilizador não encontrado!"
                     }
                 }
             }) {
-                Text("Buscar Usuário")
+                Text("Buscar Utilizador")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -104,7 +125,7 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
                 TextField(
                     value = newUserType,
                     onValueChange = { newUserType = it },
-                    label = { Text("Novo Tipo de Usuário (ex: adm)") },
+                    label = { Text("Novo Tipo de Utilizador (ex: adm ou user)") },
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -118,7 +139,7 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
                 Button(onClick = {
                     userId?.let { id ->
                         viewModel.updateUserType(id, newUserType) { success ->
-                            message = if (success) "Tipo de usuário atualizado!" else "Erro ao atualizar tipo!"
+                            message = if (success) "Tipo de Utilizador atualizado!" else "Erro ao atualizar tipo!"
                         }
                     }
                 }) {
@@ -140,5 +161,6 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
         // Exibição de Mensagens
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = message, color = Color.Red)
+    }
     }
 }
