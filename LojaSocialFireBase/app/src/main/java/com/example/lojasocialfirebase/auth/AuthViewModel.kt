@@ -49,6 +49,35 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+    fun updateUserType(userId: String, newType: String, onComplete: (Boolean) -> Unit) {
+        db.collection("users").document(userId).update("type", newType)
+            .addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
+    }
+
+    fun updateUserEmail(userId: String, newEmail: String, onComplete: (Boolean) -> Unit) {
+        db.collection("users").document(userId).update("email", newEmail)
+            .addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
+    }
+
+    fun fetchUserByEmail(email: String, onComplete: (String?, Boolean) -> Unit) {
+        db.collection("users").whereEqualTo("email", email).get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val document = documents.documents[0]
+                    val userId = document.id
+                    onComplete(userId, true)
+                } else {
+                    onComplete(null, false)
+                }
+            }
+            .addOnFailureListener {
+                onComplete(null, false)
+            }
+    }
+
+
     fun logoutUser() {
         auth.signOut()
     }

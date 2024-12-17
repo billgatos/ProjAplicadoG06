@@ -51,6 +51,11 @@ fun AppNavHost() {
                 RegisterFamiliaScreen(familiaViewModel)
             }
         }
+        composable("userManagement") {
+            MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) { modifier ->
+                UserManagementScreen(authViewModel)
+            }
+        }
     }
 }
 
