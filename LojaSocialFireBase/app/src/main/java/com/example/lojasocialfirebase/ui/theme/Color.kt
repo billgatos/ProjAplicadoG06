@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -50,6 +51,7 @@ fun CustomTextField(
 ) {
     val lightGreen = Color(0xFFA8E6CF)
     val borderColor = Color(0xFF56C596)
+    val textColor: Color = Color(0xFF004D40) // Defina a cor do texto digitado aqui
 
     TextField(
         value = value,
@@ -59,7 +61,13 @@ fun CustomTextField(
             containerColor = lightGreen,
             focusedIndicatorColor = borderColor,
             unfocusedIndicatorColor = borderColor,
-            cursorColor = borderColor
+            cursorColor = borderColor,
+            focusedTextColor = textColor,
+            unfocusedTextColor = textColor
+        ),
+        textStyle = MaterialTheme.typography.bodyLarge.copy(
+            fontWeight = FontWeight.Bold,     // Aplica negrito ao texto digitado
+            color = textColor                 // Aplica a cor ao texto digitado
         ),
         shape = RoundedCornerShape(8.dp),
         modifier = modifier // Aplica o modifier passado como parâmetro

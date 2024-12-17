@@ -1,15 +1,19 @@
 package com.example.lojasocialfirebase.dashboard
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,37 +36,19 @@ fun DashboardScreen(navController: NavController, dashboardViewModel: DashboardV
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Selecione uma opção",
-                style = MaterialTheme.typography.headlineMedium,
+                text = "Dashboard Administrador",
+                style = MaterialTheme.typography.headlineMedium.copy(
+                    fontFamily = FontFamily.Serif,      // Fonte estilizada (ex.: Serif)
+                    fontWeight = FontWeight.Bold,       // Negrito para destaque
+                    letterSpacing = 1.5.sp,             // Espaçamento entre letras
+                    fontSize = 24.sp                    // Tamanho da fonte ajustado
+                ),
                 color = Color(0xFF2E7D32),
                 modifier = Modifier.padding(bottom = 24.dp)
             )
 
-            // Renderizando as opções do dashboardViewModel
-            dashboardViewModel.options.forEach { option ->
-                Card(
-                    shape = RoundedCornerShape(8.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFFA8E6CF)),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp)
-                        .clickable { navController.navigate(option.route) }
-                ) {
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .fillMaxWidth()
-                    ) {
-                        Text(
-                            text = option.title,
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = Color.White
-                        )
-                    }
-                }
-            }
+            // Chamada à função reutilizável
+            DashboardOptionsList(navController, dashboardViewModel.options)
         }
     }
 }
-
