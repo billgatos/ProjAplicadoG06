@@ -43,7 +43,7 @@ fun AppNavHost() {
         }
         composable("registerVisita") {
             MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) { modifier ->
-                RegisterVisitaScreen(visitaViewModel)
+                RegisterVisitaScreen(visitaViewModel, familiaViewModel)
             }
         }
         composable("registerFamilia") {
