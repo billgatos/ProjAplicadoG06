@@ -8,8 +8,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.lojasocialfirebase.auth.*
 import com.example.lojasocialfirebase.dashboard.DashboardViewModel
 import com.example.lojasocialfirebase.ui.dashboard.DashboardScreen
-import com.example.lojasocialfirebase.viewmodel.FamiliaViewModel
-import com.example.lojasocialfirebase.viewmodel.RegisterFamiliaScreen
+import com.example.lojasocialfirebase.familia.FamiliaViewModel
+import com.example.lojasocialfirebase.familia.RegisterFamiliaScreen
 import com.example.lojasocialfirebase.visita.*
 
 @Composable

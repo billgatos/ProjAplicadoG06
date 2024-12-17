@@ -1,6 +1,5 @@
-package com.example.lojasocialfirebase.viewmodel
+package com.example.lojasocialfirebase.familia
 
-import com.example.lojasocialfirebase.models.Familia
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
