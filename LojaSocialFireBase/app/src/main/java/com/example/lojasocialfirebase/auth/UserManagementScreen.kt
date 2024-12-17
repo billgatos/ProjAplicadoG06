@@ -5,7 +5,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -28,7 +31,9 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
     var newUserType by remember { mutableStateOf("") }
     var newEmail by remember { mutableStateOf("") }
     var message by remember { mutableStateOf("") }
+    var idioma by remember { mutableStateOf("") }
 
+    val languages = listOf("PT", "EN") // Opções de idioma
 
     Scaffold(
         containerColor = backgroundColor
@@ -85,6 +90,28 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
                 modifier = Modifier.fillMaxWidth(),
                 visualTransformation = PasswordVisualTransformation()
             )
+
+            // Dropdown de Idioma
+            Text("Selecione o Idioma:")
+            var expanded by remember { mutableStateOf(false) }
+            Box {
+                OutlinedButton(onClick = { expanded = true }) {
+                    Text(idioma)
+                }
+                DropdownMenu(expanded = expanded,
+                    onDismissRequest = { expanded = false },
+                    modifier = Modifier.width(100.dp)
+                ) {
+                    languages.forEach { language ->
+                        DropdownMenuItem(
+                            text = {Text(language)},
+                            onClick = {
+                                idioma = language
+                                expanded = false
+                            })
+                    }
+                }
+            }
             Spacer(modifier = Modifier.height(16.dp))
 
             // Botão para gravar dados do utilizador

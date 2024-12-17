@@ -19,15 +19,19 @@ class AuthViewModel : ViewModel() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userId = auth.currentUser?.uid ?: return@addOnCompleteListener
-                db.collection("users").document(userId).set(mapOf("type" to "user"))
-                db.collection("users").document(userId).set(mapOf("email" to email))
-                onComplete(true)
-            } else {
+                val userdata = mapOf(
+                    "type" to "user",
+                    "email" to email)
+                db.collection("users").document(userId)
+                    .set(userdata)
+                    .addOnSuccessListener{
+                        onComplete(true)
+                    }
+            }else {
                 onComplete(false)
             }
         }
     }
-
     fun loginUser(email: String, password: String, onComplete: (Boolean) -> Unit) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
