@@ -116,7 +116,7 @@ fun UserManagementScreen(viewModel: AuthViewModel) {
 
             // Botão para gravar dados do utilizador
             Button(onClick = {
-                viewModel.registerUser(email, password) { success ->
+                viewModel.registerUser(email, password, idioma) { success ->
                     message = if (success) "Usuário criado com sucesso!" else "Erro ao criar usuário!"
                 }},
                 colors = ButtonDefaults.buttonColors(containerColor = buttonColor),

@@ -15,13 +15,14 @@ class AuthViewModel : ViewModel() {
     val currentUserEmail: String?
         get() = auth.currentUser?.email
 
-    fun registerUser(email: String, password: String, onComplete: (Boolean) -> Unit) {
+    fun registerUser(email: String, password: String, idioma : String, onComplete: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userId = auth.currentUser?.uid ?: return@addOnCompleteListener
                 val userdata = mapOf(
                     "type" to "user",
-                    "email" to email)
+                    "email" to email,
+                    "idioma" to idioma)
                 db.collection("users").document(userId)
                     .set(userdata)
                     .addOnSuccessListener{

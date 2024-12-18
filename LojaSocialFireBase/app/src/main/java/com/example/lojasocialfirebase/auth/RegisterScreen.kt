@@ -47,10 +47,31 @@ fun RegisterScreen(authViewModel: AuthViewModel, onRegisterSuccess: () -> Unit) 
             visualTransformation = PasswordVisualTransformation()
         )
 
+        // Dropdown de Idioma
+        Text("Selecione o Idioma:")
+        var expanded by remember { mutableStateOf(false) }
+        Box {
+            OutlinedButton(onClick = { expanded = true }) {
+                Text(selectedLanguage)
+            }
+            DropdownMenu(expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.width(100.dp)
+            ) {
+                languages.forEach { language ->
+                    DropdownMenuItem(
+                        text = {Text(language)},
+                        onClick = {
+                            selectedLanguage = language
+                            expanded = false
+                        })
+                }
+            }
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = {
-            authViewModel.registerUser(email, password) { success ->
+            authViewModel.registerUser(email, password, selectedLanguage) { success ->
                 if (success) onRegisterSuccess()
             }
         }) {
