@@ -115,16 +115,16 @@ fun RegisterVoluntarioScreen(
                             nome = ""
                             pessoaId = ""
                             pessoaNome = ""
-                            dialogMessage = "Voluntário registrado com sucesso!"
+                            dialogMessage = "Voluntário registado com sucesso!"
                         } else {
-                            dialogMessage = "Erro ao registrar voluntário."
+                            dialogMessage = "Erro ao registar voluntário."
                         }
                     }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Registrar Voluntário", color = Color.White)
+                Text("Registar Voluntário", color = Color.White)
             }
 
             dialogMessage?.let { message ->

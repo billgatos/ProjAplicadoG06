@@ -68,7 +68,7 @@ fun RegisterPessoaScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Registrar Pessoa",
+                text = "Registar Pessoa",
                 style = MaterialTheme.typography.headlineMedium,
                 color = textColor
             )
@@ -116,7 +116,7 @@ fun RegisterPessoaScreen(
 
             CustomTextField(value = nome, onValueChange = { nome = it }, label = "Nome")
             CustomTextField(value = idade, onValueChange = { idade = it }, label = "Idade")
-            CustomTextField(value = contacto, onValueChange = { contacto = it }, label = "Contato")
+            CustomTextField(value = contacto, onValueChange = { contacto = it }, label = "Contacto")
             CustomTextField(value = dataNascimento, onValueChange = { dataNascimento = it }, label = "Data de Nascimento (yyyy-MM-dd)")
 
             // Dropdown Menu para seleção de país
@@ -181,9 +181,9 @@ fun RegisterPessoaScreen(
                             paisCodigo = ""
                             familiaRef = ""
                             familiaNome = ""
-                            dialogMessage = "Pessoa registrada com sucesso!"
+                            dialogMessage = "Pessoa registada com sucesso!"
                         } else {
-                            dialogMessage = "Erro ao registrar pessoa."
+                            dialogMessage = "Erro ao registar pessoa."
                         }
                     }
                 },
@@ -191,7 +191,7 @@ fun RegisterPessoaScreen(
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Registrar Pessoa", color = Color.White)
+                Text("Registar Pessoa", color = Color.White)
             }
         }
         // Mensagem de diálogo de feedback

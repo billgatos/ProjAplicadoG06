@@ -141,7 +141,7 @@ fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Registrar Família", color = Color.White)
+                Text("Registar Família", color = Color.White)
             }
         }
 

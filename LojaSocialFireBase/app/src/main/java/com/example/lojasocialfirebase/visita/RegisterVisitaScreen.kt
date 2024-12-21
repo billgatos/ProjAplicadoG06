@@ -145,7 +145,7 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                CustomTextField(value = contacto, onValueChange = { contacto = it }, label = "Contato", modifier = Modifier.weight(1f))
+                CustomTextField(value = contacto, onValueChange = { contacto = it }, label = "Contacto", modifier = Modifier.weight(1f))
                 CustomTextField(value = nacionalidade, onValueChange = { nacionalidade = it }, label = "Nacionalidade", modifier = Modifier.weight(1f))
             }
 
@@ -182,7 +182,7 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Registrar Visita", color = Color.White)
+                Text("Registar Visita", color = Color.White)
             }
         }
 
