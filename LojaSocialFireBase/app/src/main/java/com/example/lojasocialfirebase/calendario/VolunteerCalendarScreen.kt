@@ -20,7 +20,7 @@ fun VolunteerCalendarScreen(calendarViewModel: CalendarViewModel, voluntarioId: 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Registrar Data") },
+                title = { Text("Registar Data") },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
             )
         }

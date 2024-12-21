@@ -67,7 +67,7 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Registrar Visita",
+                text = "Registar Visita",
                 style = MaterialTheme.typography.headlineMedium,
                 color = textColor
             )

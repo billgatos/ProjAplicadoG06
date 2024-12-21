@@ -76,12 +76,12 @@ fun AdminCalendarScreen(calendarViewModel: CalendarViewModel) {
                                     }
                                 }
                             ),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFF004D40))
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFFA8E6CF))
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
-                            Text("Voluntário: ${request.voluntarioNome}", color = Color.White)
-                            Text("Data: ${request.data}", color = Color.White)
-                            Text("Status: $status", color = Color.White)
+                            Text("Voluntário: ${request.voluntarioNome}", color = Color.Black)
+                            Text("Data: ${request.data}", color = Color.Black)
+                            Text("Status: $status", color = Color.Black)
                             Row {
                                 Button(
                                     onClick = {

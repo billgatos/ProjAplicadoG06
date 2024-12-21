@@ -49,7 +49,7 @@ fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Registrar Família",
+                text = "Registar Família",
                 style = MaterialTheme.typography.headlineMedium,
                 color = textColor
             )

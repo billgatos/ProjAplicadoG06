@@ -51,7 +51,7 @@ fun RegisterVoluntarioScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Registrar Voluntário",
+                text = "Registar Voluntário",
                 style = MaterialTheme.typography.headlineMedium,
                 color = textColor
             )

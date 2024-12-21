@@ -12,6 +12,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.lojasocialfirebase.ui.theme.buttonColor
+import com.example.lojasocialfirebase.ui.theme.textColor
 
 // Função reutilizável para renderizar a lista de opções do dashboard
 @Composable
@@ -19,7 +21,7 @@ fun DashboardOptionsList(navController: NavController, options: List<DashboardOp
     options.forEach { option ->
         Card(
             shape = RoundedCornerShape(8.dp),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFF004D40)),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFFA8E6CF)),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
@@ -33,14 +35,18 @@ fun DashboardOptionsList(navController: NavController, options: List<DashboardOp
             ) {
                 Text(
                     text = option.title,
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        fontFamily = FontFamily.Serif,      // Fonte estilizada (ex.: Serif)
-                        fontWeight = FontWeight.Bold,       // Negrito para destaque
-                        letterSpacing = 1.5.sp,             // Espaçamento entre letras
-                        fontSize = 18.sp                    // Tamanho da fonte
-                    ),
-                    color = Color.White
-                )
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = buttonColor)
+
+
+                        //.copy(
+                        //fontFamily = FontFamily.Serif,      // Fonte estilizada (ex.: Serif)
+                        //fontWeight = FontWeight.Bold,       // Negrito para destaque
+                        //letterSpacing = 1.5.sp,             // Espaçamento entre letras
+                        //fontSize = 18.sp                    // Tamanho da fonte
+                    //),
+                    //color = Color.White
+
             }
         }
     }
