@@ -9,6 +9,8 @@ class DashboardViewModel : ViewModel() {
         DashboardOption(title = "Registar Pessoas", route = "registerPessoas"),
         DashboardOption(title = "Registar Utilizador", route = "userManagement"),
         DashboardOption(title = "Registar Voluntário", route = "registerVoluntario"),
-        DashboardOption(title = "Gestão Calendario", route = "aprovarCalendario")
+        DashboardOption(title = "Gestão Calendario", route = "aprovarCalendario"),
+        DashboardOption(title = "Tesouraria", route = "tesouraria"),
+        DashboardOption(title = "Ver Transações", route = "transacoes")
     )
 }
