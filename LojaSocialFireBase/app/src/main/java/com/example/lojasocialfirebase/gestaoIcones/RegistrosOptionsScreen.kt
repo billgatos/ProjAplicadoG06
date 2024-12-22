@@ -25,7 +25,7 @@ import com.example.lojasocialfirebase.dashboard.DashboardOptionsList
 @Composable
 fun RegistrosOptionsScreen(navController: NavController) {
     val options = listOf(
-        DashboardOption(title = "Registrar Visitas", route = "registerVisita", icon = R.drawable.visita),
+        DashboardOption(title = "Gestão de Visitas", route = "gestaoVisitas", icon = R.drawable.visita),
         DashboardOption(title = "Registrar Famílias", route = "registerFamilia", icon = R.drawable.familia),
         DashboardOption(title = "Registrar Pessoas", route = "registerPessoas", icon = R.drawable.pessoas),
         DashboardOption(title = "Registrar Utilizadores", route = "userManagement", icon = R.drawable.utilizadores),

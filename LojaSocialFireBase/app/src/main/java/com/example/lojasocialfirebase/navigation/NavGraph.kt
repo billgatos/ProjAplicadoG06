@@ -59,6 +59,16 @@ fun AppNavHost() {
                 DashboardScreen(navController)
             }
         }
+        // Rota Intermediária: Gestão de Visitas
+        composable("gestaoVisitas") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Gestão de Visitas",
+                onLogout
+            ) { modifier ->
+                GestaoVisitasScreen(navController)
+            }
+        }
         composable("registerVisita") {
             MainScaffold(
                 navController,

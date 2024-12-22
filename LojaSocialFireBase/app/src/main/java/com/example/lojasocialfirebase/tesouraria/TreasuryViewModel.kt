@@ -3,6 +3,7 @@ package com.example.lojasocialfirebase.tesouraria
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -17,6 +18,8 @@ class TreasuryViewModel : ViewModel() {
     private val _transactions = MutableStateFlow<List<Transaction>>(emptyList())
     val transactions: StateFlow<List<Transaction>> = _transactions
 
+    private var snapshotListener: ListenerRegistration? = null
+
     private val _balance = MutableStateFlow(0.0)
     val balance: StateFlow<Double> = _balance
 
@@ -25,6 +28,8 @@ class TreasuryViewModel : ViewModel() {
     }
 
     private fun observeTransactions() {
+        // Certifique-se de remover qualquer listener anterior para evitar múltiplas instâncias
+        snapshotListener?.remove()
         transactionsCollection.addSnapshotListener { snapshot, e ->
             if (e != null) {
                 e.printStackTrace()
@@ -72,5 +77,16 @@ class TreasuryViewModel : ViewModel() {
                 e.printStackTrace()
             }
         }
+    }
+
+    // Método para reiniciar o listener
+    fun refreshListener() {
+        observeTransactions()
+    }
+
+    override fun onCleared() {
+        // Remova o listener ao limpar o ViewModel
+        snapshotListener?.remove()
+        super.onCleared()
     }
 }

@@ -12,10 +12,15 @@ import com.example.lojasocialfirebase.ui.theme.CustomTextField
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TreasuryScreen(viewModel: TreasuryViewModel) {
-    val balance by viewModel.balance.collectAsState()
+    val balance by viewModel.balance.collectAsState() // Saldo atualizado em tempo real
 
     var amount by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
+
+    // Reconfigurar o listener quando a tela é exibida novamente
+    LaunchedEffect(Unit) {
+        viewModel.refreshListener()
+    }
 
     Scaffold(
         topBar = {
@@ -24,7 +29,7 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
             )
         },
-        containerColor = Color(0xFFF1F8E9) // Fundo verde claro
+        containerColor = Color(0xFFF1F8E9)
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -34,7 +39,6 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Saldo Atual
             Text(
                 text = "Saldo Atual: € ${"%.2f".format(balance)}",
                 style = MaterialTheme.typography.headlineMedium,
@@ -43,13 +47,11 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Campos de Entrada
             CustomTextField(value = amount, onValueChange = { amount = it }, label = "Valor")
             CustomTextField(value = description, onValueChange = { description = it }, label = "Descrição")
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Botões para Entrada e Saída
             Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
                 Button(
                     onClick = {
@@ -59,7 +61,7 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
                             description = ""
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)) // Verde escuro
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
                 ) {
                     Text("Adicionar Entrada", color = Color.White)
                 }
@@ -72,14 +74,13 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
                             description = ""
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8BC34A)) // Verde médio
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8BC34A))
                 ) {
                     Text("Adicionar Saída", color = Color.White)
                 }
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
+
 
