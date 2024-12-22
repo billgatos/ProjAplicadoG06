@@ -37,16 +37,6 @@ fun DashboardOptionsList(navController: NavController, options: List<DashboardOp
                     text = option.title,
                     style = MaterialTheme.typography.bodyLarge,
                     color = buttonColor)
-
-
-                        //.copy(
-                        //fontFamily = FontFamily.Serif,      // Fonte estilizada (ex.: Serif)
-                        //fontWeight = FontWeight.Bold,       // Negrito para destaque
-                        //letterSpacing = 1.5.sp,             // Espaçamento entre letras
-                        //fontSize = 18.sp                    // Tamanho da fonte
-                    //),
-                    //color = Color.White
-
             }
         }
     }

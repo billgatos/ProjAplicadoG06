@@ -1,4 +1,4 @@
-package com.example.lojasocialfirebase.tesouraria
+package com.example.lojasocialfirebase.gestaoIcones
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,20 +21,22 @@ import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.dashboard.DashboardOption
 import com.example.lojasocialfirebase.dashboard.DashboardOptionsList
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TreasuryOptionsScreen(navController: NavController) {
+fun RegistrosOptionsScreen(navController: NavController) {
     val options = listOf(
-        DashboardOption(title = "Tesouraria", route = "tesouraria", icon = R.drawable.fluxocaixa),
-        DashboardOption(title = "Ver Transações", route = "transacoes", icon = R.drawable.historicotrans)
+        DashboardOption(title = "Registrar Visitas", route = "registerVisita", icon = R.drawable.visita),
+        DashboardOption(title = "Registrar Famílias", route = "registerFamilia", icon = R.drawable.familia),
+        DashboardOption(title = "Registrar Pessoas", route = "registerPessoas", icon = R.drawable.pessoas),
+        DashboardOption(title = "Registrar Utilizadores", route = "userManagement", icon = R.drawable.utilizadores),
+        DashboardOption(title = "Registrar Voluntários", route = "registerVoluntario", icon = R.drawable.voluntarios)
     )
 
     Scaffold(
         containerColor = Color(0xFFF1F8E9),
         topBar = {
             TopAppBar(
-                title = { Text("Opções da Tesouraria") },
+                title = { Text("Gestão de Registros") },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
             )
         }
@@ -45,18 +47,18 @@ fun TreasuryOptionsScreen(navController: NavController) {
                 .padding(16.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Gestão Tesouraria",
+                text = "Gestão de Registros",
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color(0xFF2E7D32)
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Usando a função reutilizável para exibir as opções
-            DashboardOptionsList(navController = navController, options = options)
+            // Lista de opções com ícones
+            options.forEach { option ->
+                IconOptionCard(navController = navController, option = option)
+            }
         }
     }
 }

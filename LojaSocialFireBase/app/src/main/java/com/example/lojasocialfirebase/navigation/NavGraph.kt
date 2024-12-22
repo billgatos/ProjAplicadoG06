@@ -3,16 +3,16 @@ package com.example.lojasocialfirebase.navigation
 import PessoaViewModel
 import RegisterVisitaScreen
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.lojasocialfirebase.auth.*
 import com.example.lojasocialfirebase.calendario.CalendarViewModel
-import com.example.lojasocialfirebase.dashboard.DashboardViewModel
 import com.example.lojasocialfirebase.dashboard.DashboardScreen
 import com.example.lojasocialfirebase.familia.FamiliaViewModel
 import com.example.lojasocialfirebase.familia.RegisterFamiliaScreen
+import com.example.lojasocialfirebase.gestaoIcones.GroupNavCalendar
+import com.example.lojasocialfirebase.gestaoIcones.RegistrosOptionsScreen
 import com.example.lojasocialfirebase.pessoa.RegisterPessoaScreen
 import com.example.lojasocialfirebase.tesouraria.TransactionsScreen
 import com.example.lojasocialfirebase.tesouraria.TreasuryOptionsScreen
@@ -28,7 +28,6 @@ fun AppNavHost() {
     val navController = rememberNavController()
     val authViewModel = AuthViewModel()
     val visitaViewModel = VisitaViewModel()
-    val dashboardViewModel = DashboardViewModel()
     val familiaViewModel = FamiliaViewModel()
     val pessoaViewModel = PessoaViewModel()
     val voluntarioViewModel = VoluntarioViewModel()
@@ -57,7 +56,7 @@ fun AppNavHost() {
                 authViewModel.currentUserEmail ?: "Utilizador",
                 onLogout
             ) { modifier ->
-                DashboardScreen(navController, dashboardViewModel)
+                DashboardScreen(navController)
             }
         }
         composable("registerVisita") {
@@ -140,6 +139,24 @@ fun AppNavHost() {
                 onLogout
             ) { modifier ->
                 TreasuryOptionsScreen(navController)
+            }
+        }
+        composable("registrosOptions") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Gestão de Registros",
+                onLogout
+            ) { modifier ->
+                RegistrosOptionsScreen(navController)
+            }
+        }
+        composable("calendarOptions") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Calendário",
+                onLogout
+            ) { modifier ->
+                AdminCalendarScreen(calendarViewModel)
             }
         }
     }

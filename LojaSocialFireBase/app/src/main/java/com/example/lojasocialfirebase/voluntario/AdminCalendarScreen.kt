@@ -82,7 +82,11 @@ fun AdminCalendarScreen(calendarViewModel: CalendarViewModel) {
                             Text("Voluntário: ${request.voluntarioNome}", color = Color.Black)
                             Text("Data: ${request.data}", color = Color.Black)
                             Text("Status: $status", color = Color.Black)
-                            Row {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
                                 Button(
                                     onClick = {
                                         calendarViewModel.updateRequestStatus(request.id, "Aprovado") {
@@ -90,11 +94,11 @@ fun AdminCalendarScreen(calendarViewModel: CalendarViewModel) {
                                             status = "Aprovado"
                                         }
                                     },
+                                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8BC34A)), // Verde claro
                                     enabled = !isLocked
                                 ) {
                                     Text("Aprovar")
                                 }
-                                Spacer(modifier = Modifier.width(8.dp))
                                 Button(
                                     onClick = {
                                         calendarViewModel.updateRequestStatus(request.id, "Rejeitado") {
@@ -102,6 +106,7 @@ fun AdminCalendarScreen(calendarViewModel: CalendarViewModel) {
                                             status = "Rejeitado"
                                         }
                                     },
+                                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF44336)), // Vermelho
                                     enabled = !isLocked
                                 ) {
                                     Text("Rejeitar")
