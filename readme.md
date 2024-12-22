@@ -4,9 +4,9 @@ Este projeto é uma solução para uma **Loja Social**, uma plataforma desenvolv
 
 ## Equipe
 
-- **Roberto Rodrigues** - Matrícula: 5278
-- **Victor Destefani** - Matrícula: 18586
-- **Fernando Moura** - Matrícula: 1154
+- **Roberto Rodrigues** - Aluno: 5278
+- **Victor Destefani** - Aluno: 18586
+- **Fernando Moura** - Aluno: 1154
 
 ## Objetivo
 
@@ -23,14 +23,14 @@ O principal objetivo deste projeto é oferecer uma solução digital que una asp
 
 ## Tecnologias Utilizadas
 
-- **Frontend**: React.js, HTML5, CSS3
-- **Backend**: Node.js, Express.js
-- **Banco de Dados**: MongoDB
-- **Autenticação**: JWT (JSON Web Tokens)
-- **Hospedagem**: Heroku
+ ***********
+ Android Studio
+ Kottlin
+ Jetpack Compose
+ Firebase
 
 ## Como Executar o Projeto
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/usuario/loja-social.git
+   git clone https://github.com/billgatos/ProjAplicadoG06.
