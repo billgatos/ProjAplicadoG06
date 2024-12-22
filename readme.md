@@ -33,4 +33,4 @@ O principal objetivo deste projeto é oferecer uma solução digital que una asp
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/billgatos/ProjAplicadoG06.
+   git clone https://github.com/billgatos/ProjAplicadoG06.git
