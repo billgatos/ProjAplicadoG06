@@ -6,13 +6,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavCalendar
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavRegistros
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavTesouraria
+import com.example.lojasocialfirebase.ui.theme.militarGreen
 import com.example.lojasocialfirebase.ui.theme.textColor
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -20,12 +25,6 @@ import com.example.lojasocialfirebase.ui.theme.textColor
 fun DashboardScreen(navController: NavController) {
     Scaffold(
         containerColor = Color(0xFFF1F8E9),
-        topBar = {
-            TopAppBar(
-                title = { Text("Dashboard do Administrador") },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
-            )
-        }
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -35,31 +34,44 @@ fun DashboardScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Dashboard Administrador",
-                style = MaterialTheme.typography.headlineMedium,
-                color = textColor
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Linha horizontal para os ícones
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp), // Espaçamento entre os ícones
-                verticalAlignment = Alignment.CenterVertically
+            // Painel com ícones
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
             ) {
-                GroupNavRegistros(navController) // Ícone de Registros
-                GroupNavTesouraria(navController) // Ícone de Tesouraria
-                GroupNavCalendar(navController) // Ícone de Calendário
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    val spectralFont = FontFamily(
+                        Font(R.font.spectralextrabold)
+                    )
+                    Text(
+                        text = "Painel Administrador",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontFamily = spectralFont,
+                        color = militarGreen,
+                        fontSize = 22.sp,
+                        letterSpacing = 1.5.sp, // Espaçamento entre as letras
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
+
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        GroupNavRegistros(navController) // Ícone de Registros
+                        GroupNavTesouraria(navController) // Ícone de Tesouraria
+                        GroupNavCalendar(navController) // Ícone de Calendário
+                    }
+                }
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewDashboardScreen() {
-    val navController = rememberNavController() // NavController para navegação
-
-    DashboardScreen(navController = navController)
 }

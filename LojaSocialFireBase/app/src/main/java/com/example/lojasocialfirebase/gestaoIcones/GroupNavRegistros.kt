@@ -17,6 +17,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
+import com.example.lojasocialfirebase.extrafun.StyledTextIcon
+import com.example.lojasocialfirebase.ui.theme.azulPiscina
+import com.example.lojasocialfirebase.ui.theme.militarGreen
 
 @Composable
 fun GroupNavRegistros(navController: NavController) {
@@ -25,19 +28,19 @@ fun GroupNavRegistros(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.padding(8.dp)
     ) {
-        IconButton(onClick = { navController.navigate("registrosOptions") }) {
+        IconButton(onClick = { navController.navigate("registrosOptions") },
+            modifier = Modifier.size(80.dp) // Tamanho do botão
+        ) {
             Icon(
-                painter = painterResource(id = R.drawable.utilizadores),
+                painter = painterResource(id = R.drawable.registros),
                 contentDescription = "Gestão de Registros",
-                tint = Color(0xFF4CAF50),
-                modifier = Modifier.size(200.dp) // Tamanho 3x maior
+                tint = azulPiscina, // Cor do ícone
+                modifier = Modifier.size(70.dp) // Tamanho do ícone
             )
         }
-        Text(
+        StyledTextIcon(
             text = "Registros",
-            color = Color(0xFF4CAF50),
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold
+            fontSize = 18,
         )
     }
 }

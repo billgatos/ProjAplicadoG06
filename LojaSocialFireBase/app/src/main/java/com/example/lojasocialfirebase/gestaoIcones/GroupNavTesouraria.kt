@@ -17,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
+import com.example.lojasocialfirebase.extrafun.StyledTextIcon
+import com.example.lojasocialfirebase.ui.theme.azulPiscina
 
 @Composable
 fun GroupNavTesouraria(navController: NavController) {
@@ -25,19 +27,19 @@ fun GroupNavTesouraria(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.padding(8.dp)
     ) {
-        IconButton(onClick = { navController.navigate("tesourariaOptions") }) {
+        IconButton(onClick = { navController.navigate("tesourariaOptions") },
+            modifier = Modifier.size(80.dp) // Tamanho do botão
+        ) {
             Icon(
                 painter = painterResource(id = R.drawable.gestaofin),
                 contentDescription = "Tesouraria e Transações",
-                tint = Color(0xFF4CAF50),
-                modifier = Modifier.size(75.dp) // Tamanho 3x maior
+                tint = azulPiscina,
+                modifier = Modifier.size(70.dp) // Tamanho do ícone
             )
         }
-        Text(
+        StyledTextIcon(
             text = "Tesouraria",
-            color = Color(0xFF4CAF50),
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold
+            fontSize = 18,
         )
     }
 }

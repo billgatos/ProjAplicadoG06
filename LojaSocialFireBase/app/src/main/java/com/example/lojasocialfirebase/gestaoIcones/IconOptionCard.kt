@@ -18,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.lojasocialfirebase.dashboard.DashboardOption
+import com.example.lojasocialfirebase.ui.theme.azulPiscina
 
 @Composable
 fun IconOptionCard(navController: NavController, option: DashboardOption) {
@@ -39,7 +40,7 @@ fun IconOptionCard(navController: NavController, option: DashboardOption) {
                 painter = painterResource(id = option.icon),
                 contentDescription = option.title,
                 modifier = Modifier.size(40.dp),
-                tint = Color(0xFF4CAF50)
+                tint = azulPiscina
             )
             Text(
                 text = option.title,
