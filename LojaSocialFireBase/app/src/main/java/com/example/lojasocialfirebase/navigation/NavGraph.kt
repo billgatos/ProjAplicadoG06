@@ -15,6 +15,7 @@ import com.example.lojasocialfirebase.familia.FamiliaViewModel
 import com.example.lojasocialfirebase.familia.RegisterFamiliaScreen
 import com.example.lojasocialfirebase.pessoa.RegisterPessoaScreen
 import com.example.lojasocialfirebase.tesouraria.TransactionsScreen
+import com.example.lojasocialfirebase.tesouraria.TreasuryOptionsScreen
 import com.example.lojasocialfirebase.tesouraria.TreasuryScreen
 import com.example.lojasocialfirebase.tesouraria.TreasuryViewModel
 import com.example.lojasocialfirebase.visita.*
@@ -119,19 +120,28 @@ fun AppNavHost() {
                 authViewModel.currentUserEmail ?: "Tesouraria",
                 onLogout
             ) { modifier ->
-                TreasuryScreen(viewModel = treasuryViewModel)
+                TreasuryScreen(treasuryViewModel)
             }
         }
+
         composable("transacoes") {
             MainScaffold(
                 navController,
                 authViewModel.currentUserEmail ?: "Transações",
                 onLogout
             ) { modifier ->
-                TransactionsScreen(viewModel = treasuryViewModel)
+                TransactionsScreen(treasuryViewModel)
             }
         }
-
+        composable("tesourariaOptions") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Tesouraria",
+                onLogout
+            ) { modifier ->
+                TreasuryOptionsScreen(navController)
+            }
+        }
     }
 }
 

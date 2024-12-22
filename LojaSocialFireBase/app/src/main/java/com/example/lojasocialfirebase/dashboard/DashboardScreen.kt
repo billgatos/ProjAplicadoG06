@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.lojasocialfirebase.tesouraria.GroupNavTesouraria
 import com.example.lojasocialfirebase.ui.theme.textColor
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,25 +39,17 @@ fun DashboardScreen(navController: NavController, dashboardViewModel: DashboardV
         ) {
             Text(
                 text = "Dashboard Administrador",
-
                 style = MaterialTheme.typography.headlineMedium,
                 color = textColor
-
-
-
-
-                //style = MaterialTheme.typography.headlineMedium.copy(
-                  //  fontFamily = FontFamily.Serif,      // Fonte estilizada (ex.: Serif)
-                    //fontWeight = FontWeight.Bold,       // Negrito para destaque
-                    //letterSpacing = 1.5.sp,             // Espaçamento entre letras
-                    //fontSize = 24.sp                    // Tamanho da fonte ajustado
-                //),
-                //color = Color(0xFF2E7D32),
-                //modifier = Modifier.padding(bottom = 24.dp)
             )
 
             // Chamada à função reutilizável
             DashboardOptionsList(navController, dashboardViewModel.options)
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Adicionar o componente de navegação agrupada
+            GroupNavTesouraria(navController)
         }
     }
 }

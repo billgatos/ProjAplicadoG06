@@ -48,7 +48,9 @@ fun TransactionsList(transactions: List<Transaction>) {
 @Composable
 fun TransactionsScreen(viewModel: TreasuryViewModel) {
     val transactions by viewModel.transactions.collectAsState() // Observa as mudanças em tempo real
-    var filteredTransactions by remember { mutableStateOf(transactions) }
+    var filteredTransactions by remember {
+        mutableStateOf(transactions.sortedByDescending { it.date.toDateOrNull() })
+    }
     var startDate by remember { mutableStateOf("") }
     var endDate by remember { mutableStateOf("") }
 
@@ -97,14 +99,14 @@ fun TransactionsScreen(viewModel: TreasuryViewModel) {
                 ) {
                     Button(
                         onClick = {
-                            // Aplicar filtro baseado no intervalo de datas
+                            // Aplicar filtro baseado no intervalo de datas, ignorando horas
                             filteredTransactions = transactions.filter { transaction ->
-                                val transactionDate = transaction.date.toDateOrNull()
-                                val start = startDate.toDateOrNull()
-                                val end = endDate.toDateOrNull()
+                                val transactionDate = transaction.date.toDateWithoutTimeOrNull()
+                                val start = startDate.toDateWithoutTimeOrNull()
+                                val end = endDate.toDateWithoutTimeOrNull()
                                 transactionDate != null && start != null && end != null &&
                                         transactionDate in start..end
-                            }
+                            }.sortedByDescending { it.date.toDateOrNull() } // Ordenar pela data e hora
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF56C596)) // Verde
                     ) {
@@ -116,7 +118,7 @@ fun TransactionsScreen(viewModel: TreasuryViewModel) {
                             // Limpar campos e restaurar transações completas
                             startDate = ""
                             endDate = ""
-                            filteredTransactions = transactions
+                            filteredTransactions = transactions.sortedByDescending { it.date.toDateOrNull() }
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F)) // Vermelho
                     ) {
@@ -134,11 +136,20 @@ fun TransactionsScreen(viewModel: TreasuryViewModel) {
 }
 
 
-
 fun String.toDateOrNull(): Date? {
+    return try {
+        SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(this)
+    } catch (e: Exception) {
+        null
+    }
+}
+
+fun String.toDateWithoutTimeOrNull(): Date? {
     return try {
         SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(this)
     } catch (e: Exception) {
         null
     }
 }
+
+

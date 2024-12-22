@@ -44,6 +44,17 @@ fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
 
         Spacer(modifier = Modifier.weight(1f))
 
+        // Ícone de Voltar (centro-esquerda)
+        IconButton(onClick = { navController.popBackStack() }) {
+            Icon(
+                painter = painterResource(id = R.drawable.backbutton), // Substitua pelo ícone correto
+                contentDescription = "Voltar",
+                tint = Color.White
+            )
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+
         // Ícone de Casa (centro)
         IconButton(onClick = { navController.navigate("dashboard") }) {
             Icon(

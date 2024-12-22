@@ -31,7 +31,8 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
                 .padding(paddingValues)
                 .padding(16.dp)
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             // Saldo Atual
             Text(
