@@ -1,9 +1,11 @@
 package com.example.lojasocialfirebase.gestaoIcones
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,16 +22,16 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.dashboard.DashboardOption
-import com.example.lojasocialfirebase.dashboard.DashboardOptionsList
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegistrosOptionsScreen(navController: NavController) {
     val options = listOf(
         DashboardOption(title = "Gestão de Visitas", route = "gestaoVisitas", icon = R.drawable.visita),
-        DashboardOption(title = "Registrar Famílias", route = "registerFamilia", icon = R.drawable.familia),
-        DashboardOption(title = "Registrar Pessoas", route = "registerPessoas", icon = R.drawable.pessoas),
-        DashboardOption(title = "Registrar Utilizadores", route = "userManagement", icon = R.drawable.utilizadores),
-        DashboardOption(title = "Registrar Voluntários", route = "registerVoluntario", icon = R.drawable.voluntarios)
+        DashboardOption(title = "Gestão de Famílias", route = "gestaoFamilias", icon = R.drawable.familia),
+        DashboardOption(title = "Gestão de Pessoas", route = "gestaoPessoas", icon = R.drawable.pessoas),
+        DashboardOption(title = "Gestão de Utilizadores", route = "gestaoUtilizadores", icon = R.drawable.utilizadores),
+        DashboardOption(title = "Gestão de Voluntários", route = "gestaoVoluntarios", icon = R.drawable.voluntarios)
     )
 
     Scaffold(
@@ -44,21 +46,33 @@ fun RegistrosOptionsScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .padding(paddingValues)
-                .padding(16.dp)
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Título na parte superior
             Text(
                 text = "Gestão de Registros",
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF2E7D32)
+                color = Color(0xFF2E7D32),
+                modifier = Modifier.padding(top = 16.dp, bottom = 32.dp)
             )
 
-            // Lista de opções com ícones
-            options.forEach { option ->
-                IconOptionCard(navController = navController, option = option)
+            // Adiciona espaçamento abaixo do título
+            Spacer(modifier = Modifier.height(110.dp))
+
+            // Botões organizados em uma coluna centralizada
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp) // Espaçamento entre os botões
+            ) {
+                options.forEach { option ->
+                    IconOptionCard(navController = navController, option = option)
+                }
             }
         }
     }
 }
+

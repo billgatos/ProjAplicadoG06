@@ -26,7 +26,6 @@ import com.example.lojasocialfirebase.ui.theme.backgroundColor
 import com.example.lojasocialfirebase.ui.theme.buttonColor
 import com.example.lojasocialfirebase.ui.theme.textColor
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterFamiliaScreen(familiaViewModel: FamiliaViewModel = viewModel()) {
     var nome by remember { mutableStateOf("") }

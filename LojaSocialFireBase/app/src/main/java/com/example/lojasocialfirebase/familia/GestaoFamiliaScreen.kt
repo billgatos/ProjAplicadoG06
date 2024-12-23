@@ -1,4 +1,4 @@
-package com.example.lojasocialfirebase.visita
+package com.example.lojasocialfirebase.familia
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,21 +20,20 @@ import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.dashboard.DashboardOption
 import com.example.lojasocialfirebase.gestaoIcones.IconOptionCard
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GestaoVisitasScreen(navController: NavController) {
+fun GestaoFamiliasScreen(navController: NavController) {
     val options = listOf(
-        DashboardOption(title = "Registrar Visitas", route = "registerVisita", icon = R.drawable.adicionar),
-        DashboardOption(title = "Listar Visitas", route = "listVisitas", icon = R.drawable.ler),
-        DashboardOption(title = "Editar Visitas", route = "editVisitas", icon = R.drawable.editar)
+        DashboardOption(title = "Registrar Famílias", route = "registerFamilia", icon = R.drawable.adicionar),
+        DashboardOption(title = "Listar Famílias", route = "listFamilias", icon = R.drawable.ler),
+        DashboardOption(title = "Editar Famílias", route = "editFamilias", icon = R.drawable.editar)
     )
 
     Scaffold(
         containerColor = Color(0xFFF1F8E9),
         topBar = {
             TopAppBar(
-                title = { Text("Gestão de Visitas") },
+                title = { Text("Gestão de Famílias") },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
             )
         }
@@ -48,12 +47,12 @@ fun GestaoVisitasScreen(navController: NavController) {
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Gestão de Visitas",
+                text = "Gestão de Famílias",
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color(0xFF2E7D32)
             )
 
-            // Lista de opções para a gestão de visitas
+            // Lista de opções para a gestão de famílias
             options.forEach { option ->
                 IconOptionCard(navController = navController, option = option)
             }

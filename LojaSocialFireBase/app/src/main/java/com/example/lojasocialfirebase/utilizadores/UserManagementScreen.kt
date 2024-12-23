@@ -1,4 +1,4 @@
-package com.example.lojasocialfirebase.auth
+package com.example.lojasocialfirebase.utilizadores
 
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.*
@@ -17,6 +17,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import com.example.lojasocialfirebase.auth.AuthViewModel
 import com.example.lojasocialfirebase.ui.theme.backgroundColor
 import com.example.lojasocialfirebase.ui.theme.buttonColor
 import com.example.lojasocialfirebase.ui.theme.textColor

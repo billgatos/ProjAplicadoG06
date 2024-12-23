@@ -10,16 +10,23 @@ import com.example.lojasocialfirebase.auth.*
 import com.example.lojasocialfirebase.calendario.CalendarViewModel
 import com.example.lojasocialfirebase.dashboard.DashboardScreen
 import com.example.lojasocialfirebase.familia.FamiliaViewModel
+import com.example.lojasocialfirebase.familia.GestaoFamiliasScreen
 import com.example.lojasocialfirebase.familia.RegisterFamiliaScreen
-import com.example.lojasocialfirebase.gestaoIcones.GroupNavCalendar
 import com.example.lojasocialfirebase.gestaoIcones.RegistrosOptionsScreen
+import com.example.lojasocialfirebase.pessoa.GestaoPessoasScreen
 import com.example.lojasocialfirebase.pessoa.RegisterPessoaScreen
 import com.example.lojasocialfirebase.tesouraria.TransactionsScreen
 import com.example.lojasocialfirebase.tesouraria.TreasuryOptionsScreen
 import com.example.lojasocialfirebase.tesouraria.TreasuryScreen
 import com.example.lojasocialfirebase.tesouraria.TreasuryViewModel
+import com.example.lojasocialfirebase.utilizadores.EditUserScreen
+import com.example.lojasocialfirebase.utilizadores.GestaoUtilizadoresScreen
+import com.example.lojasocialfirebase.utilizadores.ListUsersScreen
+import com.example.lojasocialfirebase.utilizadores.RegisterUserScreen
+import com.example.lojasocialfirebase.utilizadores.UserManagementScreen
 import com.example.lojasocialfirebase.visita.*
 import com.example.lojasocialfirebase.voluntario.AdminCalendarScreen
+import com.example.lojasocialfirebase.voluntario.GestaoVoluntariosScreen
 import com.example.lojasocialfirebase.voluntario.RegisterVoluntarioScreen
 import com.example.lojasocialfirebase.voluntario.VoluntarioViewModel
 
@@ -169,6 +176,78 @@ fun AppNavHost() {
                 AdminCalendarScreen(calendarViewModel)
             }
         }
+        composable("gestaoFamilias") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Famílias",
+                onLogout
+            ) { modifier ->
+                GestaoFamiliasScreen(navController = navController)
+            }
+        }
+
+        composable("gestaoPessoas") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Pessoas",
+                onLogout
+            ) { modifier ->
+                GestaoPessoasScreen(navController = navController)
+            }
+        }
+        composable("gestaoUtilizadores") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Utilizadores",
+                onLogout
+            ) { modifier ->
+                GestaoUtilizadoresScreen(navController = navController)
+            }
+        }
+        composable("registerUser") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Registrar Utilizador",
+                onLogout
+            ) { modifier ->
+                RegisterUserScreen(authViewModel) {
+                    // Navegar após o registro
+                    navController.navigate("dashboard") {
+                        popUpTo("dashboard") { inclusive = true } // Limpa a pilha de navegação
+                    }
+                }
+            }
+        }
+        composable("listUsers") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Listar Utilizadores",
+                onLogout
+            ) { modifier ->
+                ListUsersScreen(authViewModel) // Criar a tela para listar utilizadores
+            }
+        }
+
+        composable("editUser") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Editar Utilizador",
+                onLogout
+            ) { modifier ->
+                EditUserScreen(authViewModel) // Criar a tela para editar utilizadores
+            }
+        }
+
+        composable("gestaoVoluntarios"){
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Voluntários",
+                onLogout
+            ) { modifier ->
+                GestaoVoluntariosScreen(navController = navController)
+            }
+        }
     }
 }
+
 

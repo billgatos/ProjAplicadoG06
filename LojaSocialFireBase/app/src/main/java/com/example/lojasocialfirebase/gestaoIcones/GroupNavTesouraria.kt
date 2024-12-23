@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.extrafun.StyledTextIcon
 import com.example.lojasocialfirebase.ui.theme.azulPiscina
+import com.example.lojasocialfirebase.ui.theme.darkSeaGreen
 
 @Composable
 fun GroupNavTesouraria(navController: NavController) {
@@ -33,13 +34,13 @@ fun GroupNavTesouraria(navController: NavController) {
             Icon(
                 painter = painterResource(id = R.drawable.gestaofin),
                 contentDescription = "Tesouraria e Transações",
-                tint = azulPiscina,
-                modifier = Modifier.size(70.dp) // Tamanho do ícone
+                tint = darkSeaGreen,
+                modifier = Modifier.size(60.dp) // Tamanho do ícone
             )
         }
         StyledTextIcon(
             text = "Tesouraria",
-            fontSize = 18,
+            fontSize = 16,
         )
     }
 }

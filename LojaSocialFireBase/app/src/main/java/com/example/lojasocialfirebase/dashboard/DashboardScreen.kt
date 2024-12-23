@@ -17,10 +17,10 @@ import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavCalendar
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavRegistros
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavTesouraria
+import com.example.lojasocialfirebase.ui.theme.darkGreen
 import com.example.lojasocialfirebase.ui.theme.militarGreen
 import com.example.lojasocialfirebase.ui.theme.textColor
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(navController: NavController) {
     Scaffold(
@@ -55,14 +55,14 @@ fun DashboardScreen(navController: NavController) {
                         text = "Painel Administrador",
                         style = MaterialTheme.typography.titleLarge,
                         fontFamily = spectralFont,
-                        color = militarGreen,
+                        color = darkGreen,
                         fontSize = 22.sp,
                         letterSpacing = 1.5.sp, // Espaçamento entre as letras
                         modifier = Modifier.padding(bottom = 16.dp)
                     )
 
                     Row(
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly, // Espaçamento uniforme
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.fillMaxWidth()
                     ) {
@@ -74,4 +74,14 @@ fun DashboardScreen(navController: NavController) {
             }
         }
     }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun PreviewDashboardScreen() {
+    // Cria um NavController fictício para o preview
+    val mockNavController = rememberNavController()
+
+    // Renderiza o DashboardScreen com o controlador fictício
+    DashboardScreen(navController = mockNavController)
 }
