@@ -18,7 +18,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.lojasocialfirebase.dashboard.DashboardOption
-import com.example.lojasocialfirebase.ui.theme.azulPiscina
 import com.example.lojasocialfirebase.ui.theme.darkSeaGreen
 
 @Composable

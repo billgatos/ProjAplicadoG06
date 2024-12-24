@@ -36,7 +36,9 @@ import java.util.*
 @Composable
 fun TransactionsList(transactions: List<Transaction>) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 42.dp) // Adiciona espaço para a BottomAppBar
     ) {
         items(transactions) { transaction ->
             TransactionCard(transaction = transaction)
@@ -106,7 +108,8 @@ fun TransactionsScreen(viewModel: TreasuryViewModel) {
                                 val end = endDate.toDateWithoutTimeOrNull()
                                 transactionDate != null && start != null && end != null &&
                                         transactionDate in start..end
-                            }.sortedByDescending { it.date.toDateOrNull() } // Ordenar pela data e hora
+                            }
+                                .sortedByDescending { it.date.toDateOrNull() } // Ordenar pela data e hora
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF56C596)) // Verde
                     ) {
@@ -118,7 +121,8 @@ fun TransactionsScreen(viewModel: TreasuryViewModel) {
                             // Limpar campos e restaurar transações completas
                             startDate = ""
                             endDate = ""
-                            filteredTransactions = transactions.sortedByDescending { it.date.toDateOrNull() }
+                            filteredTransactions =
+                                transactions.sortedByDescending { it.date.toDateOrNull() }
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F)) // Vermelho
                     ) {

@@ -42,7 +42,8 @@ val buttonColor = Color(0xFF56C596)
 val textColor = Color(0xFF2E7D32)
 val backgroundColor = Color(0xFFF1F8E9)
 val militarGreen = Color(0xFF4B5320)
-val azulPiscina = Color(0xFF007B8A)
+val silverGreen = Color(0xFFB0C4B1)
+val silverBrute = Color(0xFF4A4A4A)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

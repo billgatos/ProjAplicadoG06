@@ -1,36 +1,56 @@
 package com.example.lojasocialfirebase.navigation
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R  // Importa a referência ao recurso R para acessar os ícones
+import com.example.lojasocialfirebase.ui.theme.silverBrute
+import com.example.lojasocialfirebase.ui.theme.silverGreen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopNavBar(userEmail: String) {
     TopAppBar(
+        modifier = Modifier
+            .padding(WindowInsets.statusBars.asPaddingValues()), // Respeita a barra de status
         title = {
-            Text(
-                text = userEmail,
-                color = Color.White,
-                textAlign = TextAlign.Start
-            )
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center // Centraliza o texto horizontalmente
+            ) {
+                Text(
+                    text = userEmail,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+            }
         },
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = silverGreen)
     )
 }
+
 
 @Composable
 fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
     BottomAppBar(
-        containerColor = Color(0xFF56C596),
+        modifier = Modifier.height(42.dp), // Define a altura personalizada
+        containerColor = silverGreen,
         contentColor = Color.White
     ) {
         // Ícone de Logout (esquerda)
@@ -38,7 +58,7 @@ fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
             Icon(
                 painter = painterResource(id = R.drawable.exit),
                 contentDescription = "Sair",
-                tint = Color.White
+                tint = silverBrute
             )
         }
 
@@ -49,7 +69,7 @@ fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
             Icon(
                 painter = painterResource(id = R.drawable.backbutton), // Substitua pelo ícone correto
                 contentDescription = "Voltar",
-                tint = Color.White
+                tint = silverBrute
             )
         }
 
@@ -60,7 +80,7 @@ fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
             Icon(
                 painter = painterResource(id = R.drawable.homeicon),
                 contentDescription = "Página Inicial",
-                tint = Color.White
+                tint = silverBrute
             )
         }
 
@@ -71,7 +91,7 @@ fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
             Icon(
                 painter = painterResource(id = R.drawable.notification),
                 contentDescription = "Notificações",
-                tint = Color.White
+                tint = silverBrute
             )
         }
     }
