@@ -16,4 +16,25 @@ class VisitaViewModel : ViewModel() {
             onComplete(false)
         }
     }
+
+    fun getVisitas(onComplete: (List<Visita>) -> Unit) {
+        db.collection("visitas").get().addOnSuccessListener { snapshot ->
+            val visitas = snapshot.documents.mapNotNull { document ->
+                document.toObject(Visita::class.java)
+            }
+            onComplete(visitas)
+        }.addOnFailureListener {
+            onComplete(emptyList())
+        }
+    }
+
+    fun getVisitasGroupedByNationality(onComplete: (Map<String, Int>) -> Unit) {
+        db.collection("visitas").get().addOnSuccessListener { snapshot ->
+            val visitas = snapshot.documents.mapNotNull { it.toObject(Visita::class.java) }
+            val grouped = visitas.groupingBy { it.nacionalidade }.eachCount()
+            onComplete(grouped)
+        }.addOnFailureListener {
+            onComplete(emptyMap())
+        }
+    }
 }

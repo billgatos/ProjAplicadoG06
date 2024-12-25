@@ -17,9 +17,11 @@ import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavCalendar
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavRegistros
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavTesouraria
+import com.example.lojasocialfirebase.gestaoIcones.IconOptionCard
 import com.example.lojasocialfirebase.ui.theme.darkGreen
 import com.example.lojasocialfirebase.ui.theme.militarGreen
 import com.example.lojasocialfirebase.ui.theme.textColor
+import com.example.lojasocialfirebase.visita.RelatorioVisitasScreen
 
 @Composable
 fun DashboardScreen(navController: NavController) {
@@ -69,6 +71,24 @@ fun DashboardScreen(navController: NavController) {
                         GroupNavRegistros(navController) // Ícone de Registros
                         GroupNavTesouraria(navController) // Ícone de Tesouraria
                         GroupNavCalendar(navController) // Ícone de Calendário
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // Adicionando o botão de Relatório
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceEvenly, // Espaçamento uniforme
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        IconOptionCard(
+                            navController = navController,
+                            option = DashboardOption(
+                                title = "Relatório de Visitas",
+                                route = "relatorioVisitas",
+                                icon = R.drawable.relatorio // Ícone do relatório
+                            )
+                        )
                     }
                 }
             }

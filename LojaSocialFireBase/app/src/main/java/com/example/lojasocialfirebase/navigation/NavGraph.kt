@@ -1,7 +1,6 @@
 package com.example.lojasocialfirebase.navigation
 
 import PessoaViewModel
-import RegisterVisitaScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -228,23 +227,43 @@ fun AppNavHost() {
             }
         }
 
+        composable("listVisitas") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Listar Visitas",
+                onLogout
+            ) { modifier ->
+                ListVisitasScreen(visitaViewModel)
+            }
+        }
+
         composable("editUser") {
             MainScaffold(
                 navController,
                 authViewModel.currentUserEmail ?: "Editar Utilizador",
                 onLogout
             ) { modifier ->
-                EditUserScreen(authViewModel) // Criar a tela para editar utilizadores
+                EditUserScreen(authViewModel)
             }
         }
 
-        composable("gestaoVoluntarios"){
+        composable("gestaoVoluntarios") {
             MainScaffold(
                 navController,
                 authViewModel.currentUserEmail ?: "Voluntários",
                 onLogout
             ) { modifier ->
                 GestaoVoluntariosScreen(navController = navController)
+            }
+        }
+
+        composable("relatorioVisitas") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Relatório de Visitas",
+                onLogout
+            ) { modifier ->
+                RelatorioVisitasScreen(visitaViewModel)
             }
         }
     }

@@ -1,3 +1,5 @@
+package com.example.lojasocialfirebase.visita
+
 import androidx.compose.foundation.clickable
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -6,15 +8,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.lojasocialfirebase.ui.theme.CustomDialog
 import com.example.lojasocialfirebase.ui.theme.CustomTextField
 import com.example.lojasocialfirebase.ui.theme.backgroundColor
 import com.example.lojasocialfirebase.ui.theme.buttonColor
 import com.example.lojasocialfirebase.ui.theme.textColor
-import com.example.lojasocialfirebase.visita.Visita
-import com.example.lojasocialfirebase.visita.VisitaViewModel
 import java.util.Date
 import java.text.SimpleDateFormat
 import java.util.Locale
