@@ -42,4 +42,16 @@ class VoluntarioViewModel : ViewModel() {
             emptyList()
         }
     }
+
+    fun getVoluntarioById(voluntarioId: String, onResult: (Voluntario?) -> Unit) {
+        db.collection("voluntarios").document(voluntarioId).get()
+            .addOnSuccessListener { document ->
+                val voluntario = document.toObject(Voluntario::class.java)?.copy(idVoluntario = voluntarioId)
+                onResult(voluntario)
+            }
+            .addOnFailureListener {
+                onResult(null)
+            }
+    }
+
 }

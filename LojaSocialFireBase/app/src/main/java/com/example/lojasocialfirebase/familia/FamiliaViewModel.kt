@@ -21,6 +21,26 @@ class FamiliaViewModel : ViewModel() {
         }
     }
 
+    // Função para buscar uma família pelo ID
+    fun getFamiliaById(familiaId: String, onResult: (Familia?) -> Unit) {
+        db.collection("familias").document(familiaId).get()
+            .addOnSuccessListener { document ->
+                val familia = document.toObject(Familia::class.java)?.copy(idFamilia = familiaId)
+                onResult(familia)
+            }
+            .addOnFailureListener {
+                onResult(null)
+            }
+    }
+
+    // Função para buscar detalhes da família no Firebase
+    fun fetchFamiliaDetails(familiaId: String, familiaViewModel: FamiliaViewModel, onResult: (String?) -> Unit) {
+        familiaViewModel.getFamiliaById(familiaId) { familia ->
+            onResult(familia?.paisCodigo)
+        }
+    }
+
+
     fun registerFamilia(familia: Familia, onComplete: (Boolean) -> Unit) {
         db.collection("familias").add(familia)
             .addOnSuccessListener { documentReference ->

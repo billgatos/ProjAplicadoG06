@@ -82,7 +82,7 @@ fun AppNavHost() {
                 authViewModel.currentUserEmail ?: "Utilizador",
                 onLogout
             ) { modifier ->
-                RegisterVisitaScreen(visitaViewModel, familiaViewModel)
+                RegisterVisitaScreen(visitaViewModel, familiaViewModel, voluntarioViewModel)
             }
         }
         composable("registerFamilia") {

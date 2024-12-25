@@ -51,11 +51,12 @@ fun CustomTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
-    modifier: Modifier = Modifier // Adiciona o parâmetro modifier com valor padrão
+    modifier: Modifier = Modifier, // Parâmetro modifier com valor padrão
+    enabled: Boolean = true         // Novo parâmetro enabled com valor padrão true
 ) {
     val lightGreen = Color(0xFFA8E6CF)
     val borderColor = Color(0xFF56C596)
-    val textColor: Color = Color(0xFF004D40) // Defina a cor do texto digitado aqui
+    val textColor: Color = Color(0xFF004D40) // Cor do texto digitado
 
     TextField(
         value = value,
@@ -74,6 +75,7 @@ fun CustomTextField(
             color = textColor                 // Aplica a cor ao texto digitado
         ),
         shape = RoundedCornerShape(8.dp),
+        enabled = enabled, // Define o comportamento de habilitação/desabilitação
         modifier = modifier // Aplica o modifier passado como parâmetro
             .fillMaxWidth()
             .padding(vertical = 8.dp)

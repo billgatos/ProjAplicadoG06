@@ -22,11 +22,267 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import com.example.lojasocialfirebase.familia.Familia
 import com.example.lojasocialfirebase.familia.FamiliaViewModel
+import com.example.lojasocialfirebase.voluntario.Voluntario
+import com.example.lojasocialfirebase.voluntario.VoluntarioViewModel
 
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun RegisterVisitaScreen(
+    visitaViewModel: VisitaViewModel,
+    familiaViewModel: FamiliaViewModel,
+    voluntarioViewModel: VoluntarioViewModel
+) {
+    var data_horaEnt by remember { mutableStateOf(Date()) }
+    var familiaRef by remember { mutableStateOf("") }
+    var familiaNome by remember { mutableStateOf("") }
+    var numeroPessoas by remember { mutableStateOf("") }
+    var nome by remember { mutableStateOf("") }
+    var voluntarioRef by remember { mutableStateOf("") }
+    var voluntarioNome by remember { mutableStateOf("") }
+    var levantarBens by remember { mutableStateOf(false) }
+    var localLoja by remember { mutableStateOf("") }
+    var contacto by remember { mutableStateOf("") }
+    var referencia by remember { mutableStateOf("") }
+    var notas by remember { mutableStateOf("") }
+    var nacionalidade by remember { mutableStateOf("") }
+
+    var dialogMessage by remember { mutableStateOf<String?>(null) }
+    val familias = remember { mutableStateOf<List<Familia>>(emptyList()) }
+    var isFamiliaDialogOpen by remember { mutableStateOf(false) }
+
+    val voluntarios = remember { mutableStateOf<List<Voluntario>>(emptyList()) }
+    var isVoluntarioDialogOpen by remember { mutableStateOf(false) }
+
+    // Fetch famílias e voluntários
+    LaunchedEffect(Unit) {
+        familias.value = familiaViewModel.getFamilias()
+        voluntarios.value = voluntarioViewModel.getVoluntarios()
+    }
+
+    Scaffold(
+        containerColor = backgroundColor,
+        topBar = {
+            TopAppBar(
+                title = { Text("Registrar Visita", color = Color.White) },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = buttonColor)
+            )
+        }
+    ) { paddingValues ->
+        Box(
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Registrar Visita",
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = textColor
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    // Campo de seleção de família
+                    Text(
+                        text = "Família: ${if (familiaNome.isEmpty()) "Selecionar Família" else familiaNome}",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { isFamiliaDialogOpen = true },
+                        color = Color.Black,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+
+                    // Dialog para seleção de família
+                    if (isFamiliaDialogOpen) {
+                        AlertDialog(
+                            onDismissRequest = { isFamiliaDialogOpen = false },
+                            title = { Text("Selecionar Família") },
+                            text = {
+                                Column {
+                                    familias.value.forEach { familia ->
+                                        TextButton(onClick = {
+                                            familiaRef = familia.idFamilia
+                                            familiaNome = familia.nome
+
+                                            // Busca os detalhes da família para atualizar a nacionalidade
+                                            familiaViewModel.getFamiliaById(familia.idFamilia) { selectedFamilia ->
+                                                nacionalidade = selectedFamilia?.paisCodigo ?: "N/A"
+                                            }
+                                            isFamiliaDialogOpen = false
+                                        }) {
+                                            Text(familia.nome)
+                                        }
+                                    }
+                                }
+                            },
+                            confirmButton = {
+                                TextButton(onClick = { isFamiliaDialogOpen = false }) {
+                                    Text("Cancelar")
+                                }
+                            }
+                        )
+                    }
+
+                    // Seleção de voluntário
+                    Text(
+                        text = "Voluntário: ${if (voluntarioNome.isEmpty()) "Selecionar Voluntário" else voluntarioNome}",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { isVoluntarioDialogOpen = true },
+                        color = Color.Black,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+
+                    if (isVoluntarioDialogOpen) {
+                        AlertDialog(
+                            onDismissRequest = { isVoluntarioDialogOpen = false },
+                            title = { Text("Selecionar Voluntário") },
+                            text = {
+                                Column {
+                                    voluntarios.value.forEach { voluntario ->
+                                        TextButton(onClick = {
+                                            voluntarioRef = voluntario.idVoluntario
+                                            voluntarioNome = voluntario.nomeVoluntario
+                                            isVoluntarioDialogOpen = false
+                                        }) {
+                                            Text(voluntario.nomeVoluntario)
+                                        }
+                                    }
+                                }
+                            },
+                            confirmButton = {
+                                TextButton(onClick = { isVoluntarioDialogOpen = false }) {
+                                    Text("Cancelar")
+                                }
+                            }
+                        )
+                    }
+
+                    // Outros campos
+                    CustomTextField(value = nome, onValueChange = { nome = it }, label = "Nome")
+                    CustomTextField(
+                        value = numeroPessoas,
+                        onValueChange = { numeroPessoas = it },
+                        label = "Número de Pessoas"
+                    )
+
+                    val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+                    CustomTextField(
+                        value = dateFormat.format(data_horaEnt),
+                        onValueChange = {},
+                        label = "Data e Hora de Entrada",
+                        enabled = false // Campo desabilitado para edição
+                    )
+
+                    CustomTextField(
+                        value = localLoja,
+                        onValueChange = { localLoja = it },
+                        label = "Local da Loja"
+                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        CustomTextField(
+                            value = contacto,
+                            onValueChange = { contacto = it },
+                            label = "Contacto",
+                            modifier = Modifier.weight(1f)
+                        )
+                        CustomTextField(
+                            value = nacionalidade,
+                            onValueChange = { nacionalidade = it },
+                            label = "Nacionalidade",
+                            enabled = false,
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+
+                    CustomTextField(
+                        value = referencia,
+                        onValueChange = { referencia = it },
+                        label = "Referência"
+                    )
+                    CustomTextField(value = notas, onValueChange = { notas = it }, label = "Notas")
+
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Checkbox(checked = levantarBens, onCheckedChange = { levantarBens = it })
+                        Text("Levantar Bens")
+                    }
+
+                    Button(
+                        onClick = {
+                            val visita = Visita(
+                                data_horaEnt = data_horaEnt,
+                                familia_ref = familiaRef,
+                                numero_pessoas = numeroPessoas.toIntOrNull() ?: 0,
+                                nome = nome,
+                                voluntario_ref = voluntarioRef,
+                                levantarBens = levantarBens,
+                                localLoja = localLoja,
+                                contacto = contacto,
+                                referencia = referencia,
+                                notas = notas,
+                                nacionalidade = nacionalidade
+                            )
+
+                            visitaViewModel.registerVisita(visita) { success ->
+                                dialogMessage =
+                                    if (success) "Visita adicionada com sucesso!" else "Erro ao adicionar visita."
+                                if (success) {
+                                    // Limpar campos após registro bem-sucedido
+                                    data_horaEnt = Date()
+                                    familiaRef = ""
+                                    familiaNome = ""
+                                    numeroPessoas = ""
+                                    nome = ""
+                                    voluntarioRef = ""
+                                    voluntarioNome = ""
+                                    levantarBens = false
+                                    localLoja = ""
+                                    contacto = ""
+                                    referencia = ""
+                                    notas = ""
+                                    nacionalidade = ""
+                                }
+                            }
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
+                        shape = RoundedCornerShape(8.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Registrar Visita", color = Color.White)
+                    }
+                }
+
+                dialogMessage?.let { message ->
+                    CustomDialog(message = message, onDismiss = { dialogMessage = null })
+                }
+            }
+        }
+    }
+}
+
+/*
 @Composable
 fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: FamiliaViewModel) {
     var data_horaEnt by remember { mutableStateOf(Date()) }
-    var data_horaSai by remember { mutableStateOf("") }
     var familiaRef by remember { mutableStateOf("") }
     var familiaNome by remember { mutableStateOf("") }
     var numeroPessoas by remember { mutableStateOf("") }
@@ -42,19 +298,14 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
     var dialogMessage by remember { mutableStateOf<String?>(null) }
     val scrollState = rememberScrollState()
 
-    // Estado para armazenar a lista de famílias
     val familias = remember { mutableStateOf<List<Familia>>(emptyList()) }
-
-    // Estado para controlar a exibição do Dialog
     var isDialogOpen by remember { mutableStateOf(false) }
 
-    // Chamada ao Firebase para buscar as famílias
+
+    // Fetch famílias
     LaunchedEffect(Unit) {
         val result = familiaViewModel.getFamilias()
         familias.value = result
-
-        // Adicionando log para verificar se os dados foram carregados
-        println("Familias carregadas: $result")
     }
 
     Scaffold(containerColor = backgroundColor) { paddingValues ->
@@ -67,18 +318,16 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Registar Visita",
+                text = "Registrar Visita",
                 style = MaterialTheme.typography.headlineMedium,
                 color = textColor
             )
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-
-            // Campo separado para Família (ID)
+            // Seleção de Família (Nome)
             Text(
-                text = "Família (ID): $familiaRef",
+                text = "Família: ${if (familiaNome.isEmpty()) "Selecionar Família" else familiaNome}",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp)
@@ -100,6 +349,11 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
                                 TextButton(onClick = {
                                     familiaRef = familia.idFamilia
                                     familiaNome = familia.nome
+
+                                    // Busca os detalhes da família para atualizar a nacionalidade
+                                    familiaViewModel.getFamiliaById(familia.idFamilia) { selectedFamilia ->
+                                        nacionalidade = selectedFamilia?.paisCodigo ?: "N/A"
+                                    }
                                     isDialogOpen = false
                                 }) {
                                     Text(familia.nome)
@@ -115,29 +369,18 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
                 )
             }
 
+
             CustomTextField(value = nome, onValueChange = { nome = it }, label = "Nome")
             CustomTextField(value = numeroPessoas, onValueChange = { numeroPessoas = it }, label = "Número de Pessoas")
-
             CustomTextField(value = voluntarioRef, onValueChange = { voluntarioRef = it }, label = "Voluntário (ID)")
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                CustomTextField(
-                    value = dateFormat.format(data_horaEnt),
-                    onValueChange = {},
-                    label = "Data e Hora de Entrada",
-                    modifier = Modifier.weight(1f)
-                )
-
-                CustomTextField(
-                    value = data_horaSai,
-                    onValueChange = { data_horaSai = it },
-                    label = "Data e Hora de Saída",
-                    modifier = Modifier.weight(1f)
-                )
-            }
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+            CustomTextField(
+                value = dateFormat.format(data_horaEnt),
+                onValueChange = {},
+                label = "Data e Hora de Entrada",
+                enabled = false // Campo desabilitado para edição
+            )
 
             CustomTextField(value = localLoja, onValueChange = { localLoja = it }, label = "Local da Loja")
 
@@ -146,7 +389,13 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 CustomTextField(value = contacto, onValueChange = { contacto = it }, label = "Contacto", modifier = Modifier.weight(1f))
-                CustomTextField(value = nacionalidade, onValueChange = { nacionalidade = it }, label = "Nacionalidade", modifier = Modifier.weight(1f))
+                CustomTextField(
+                    value = nacionalidade,
+                    onValueChange = { nacionalidade = it },
+                    label = "Nacionalidade",
+                    enabled = false, // Agora visível para o usuário
+                    modifier = Modifier.weight(1f)
+                )
             }
 
             CustomTextField(value = referencia, onValueChange = { referencia = it }, label = "Referência")
@@ -157,11 +406,12 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
                 Text("Levantar Bens")
             }
 
+            Spacer(modifier = Modifier.height(16.dp))
+
             Button(
                 onClick = {
                     val visita = Visita(
                         data_horaEnt = data_horaEnt,
-                        data_horaSai = Date(),
                         familia_ref = familiaRef,
                         numero_pessoas = numeroPessoas.toIntOrNull() ?: 0,
                         nome = nome,
@@ -182,7 +432,7 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Registar Visita", color = Color.White)
+                Text("Registrar Visita", color = Color.White)
             }
         }
 
@@ -191,3 +441,4 @@ fun RegisterVisitaScreen(visitaViewModel: VisitaViewModel, familiaViewModel: Fam
         }
     }
 }
+        */
