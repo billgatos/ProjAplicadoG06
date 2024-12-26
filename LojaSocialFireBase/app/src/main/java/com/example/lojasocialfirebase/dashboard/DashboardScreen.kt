@@ -1,7 +1,18 @@
 package com.example.lojasocialfirebase.dashboard
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,12 +27,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavCalendar
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavRegistros
+import com.example.lojasocialfirebase.gestaoIcones.GroupNavRelatorioVisitas
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavTesouraria
-import com.example.lojasocialfirebase.gestaoIcones.IconOptionCard
 import com.example.lojasocialfirebase.ui.theme.darkGreen
-import com.example.lojasocialfirebase.ui.theme.militarGreen
-import com.example.lojasocialfirebase.ui.theme.textColor
-import com.example.lojasocialfirebase.visita.RelatorioVisitasScreen
 
 @Composable
 fun DashboardScreen(navController: NavController) {
@@ -70,25 +78,17 @@ fun DashboardScreen(navController: NavController) {
                     ) {
                         GroupNavRegistros(navController) // Ícone de Registros
                         GroupNavTesouraria(navController) // Ícone de Tesouraria
-                        GroupNavCalendar(navController) // Ícone de Calendário
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Adicionando o botão de Relatório
                     Row(
                         horizontalArrangement = Arrangement.SpaceEvenly, // Espaçamento uniforme
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        IconOptionCard(
-                            navController = navController,
-                            option = DashboardOption(
-                                title = "Relatório de Visitas",
-                                route = "relatorioVisitas",
-                                icon = R.drawable.relatorio // Ícone do relatório
-                            )
-                        )
+                        GroupNavCalendar(navController) // Ícone de Calendário
+                        GroupNavRelatorioVisitas(navController) //Icone do Relatorio
                     }
                 }
             }
