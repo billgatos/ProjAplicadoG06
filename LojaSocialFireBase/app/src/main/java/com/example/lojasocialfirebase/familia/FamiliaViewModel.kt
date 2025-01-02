@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class FamiliaViewModel : ViewModel() {
+open class FamiliaViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
 
     suspend fun getFamilias(): List<Familia> {
@@ -13,13 +13,15 @@ class FamiliaViewModel : ViewModel() {
             snapshot.documents.map { document ->
                 Familia(
                     idFamilia = document.id,
-                    nome = document.getString("nome") ?: ""
+                    nome = document.getString("nome") ?: "",
+                    paisCodigo = document.getString("paisCodigo") ?: ""
                 )
             }
         } catch (e: Exception) {
             emptyList()
         }
     }
+
 
     // Função para buscar uma família pelo ID
     fun getFamiliaById(familiaId: String, onResult: (Familia?) -> Unit) {

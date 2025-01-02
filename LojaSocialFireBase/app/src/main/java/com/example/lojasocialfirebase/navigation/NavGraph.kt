@@ -10,6 +10,7 @@ import com.example.lojasocialfirebase.calendario.CalendarViewModel
 import com.example.lojasocialfirebase.dashboard.DashboardScreen
 import com.example.lojasocialfirebase.familia.FamiliaViewModel
 import com.example.lojasocialfirebase.familia.GestaoFamiliasScreen
+import com.example.lojasocialfirebase.familia.ListarFamiliasScreen
 import com.example.lojasocialfirebase.familia.RegisterFamiliaScreen
 import com.example.lojasocialfirebase.gestaoIcones.RegistrosOptionsScreen
 import com.example.lojasocialfirebase.pessoa.GestaoPessoasScreen
@@ -234,6 +235,16 @@ fun AppNavHost() {
                 onLogout
             ) { modifier ->
                 ListVisitasScreen(visitaViewModel)
+            }
+        }
+
+        composable("listFamilias") {
+            MainScaffold(
+                navController,
+                authViewModel.currentUserEmail ?: "Listar Visitas",
+                onLogout
+            ) { modifier ->
+                ListarFamiliasScreen(familiaViewModel)
             }
         }
 
