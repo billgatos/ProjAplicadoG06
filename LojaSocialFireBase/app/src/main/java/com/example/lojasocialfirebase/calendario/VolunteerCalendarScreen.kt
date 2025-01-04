@@ -9,12 +9,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.lojasocialfirebase.voluntario.Voluntario
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun VolunteerCalendarScreen(calendarViewModel: CalendarViewModel, voluntarioId: String, voluntarioNome: String) {
+fun VolunteerCalendarScreen(calendarViewModel: CalendarViewModel, voluntarios: List<Voluntario>) {
     var selectedDate by remember { mutableStateOf("") }
+    var selectedVoluntario by remember { mutableStateOf<Voluntario?>(null) }
+    var expanded by remember { mutableStateOf(false) }
     var dialogMessage by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
@@ -33,6 +36,37 @@ fun VolunteerCalendarScreen(calendarViewModel: CalendarViewModel, voluntarioId: 
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            // Dropdown para selecionar o voluntário
+            Box {
+                Button(
+                    onClick = { expanded = true },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF004D40))
+                ) {
+                    Text(
+                        text = selectedVoluntario?.nomeVoluntario ?: "Selecionar Voluntário",
+                        color = Color.White
+                    )
+                }
+
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
+                    voluntarios.forEach { voluntario ->
+                        DropdownMenuItem(
+                            text = { Text(voluntario.nomeVoluntario) },
+                            onClick = {
+                                selectedVoluntario = voluntario
+                                expanded = false
+                            }
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Campo para selecionar a data
             CustomTextField(
                 value = selectedDate,
                 onValueChange = { selectedDate = it },
@@ -41,14 +75,23 @@ fun VolunteerCalendarScreen(calendarViewModel: CalendarViewModel, voluntarioId: 
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            // Botão para registrar a data
             Button(
                 onClick = {
-                    calendarViewModel.addCalendarRequest(voluntarioId, voluntarioNome, selectedDate) { success ->
-                        dialogMessage = if (success) {
-                            "Data registrada com sucesso!"
-                        } else {
-                            "Erro ao registrar a data."
+                    if (selectedVoluntario != null && selectedDate.isNotEmpty()) {
+                        calendarViewModel.addCalendarRequest(
+                            selectedVoluntario!!.idVoluntario,
+                            selectedVoluntario!!.nomeVoluntario,
+                            selectedDate
+                        ) { success ->
+                            dialogMessage = if (success) {
+                                "Data registrada com sucesso!"
+                            } else {
+                                "Erro ao registrar a data."
+                            }
                         }
+                    } else {
+                        dialogMessage = "Por favor, selecione um voluntário e uma data."
                     }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF004D40))
@@ -62,4 +105,3 @@ fun VolunteerCalendarScreen(calendarViewModel: CalendarViewModel, voluntarioId: 
         }
     }
 }
-

@@ -74,7 +74,7 @@ fun LoginScreen(authViewModel: AuthViewModel, onLoginSuccess: () -> Unit) {
             Button(
                 onClick = {
                     authViewModel.loginUser(email, password) { success ->
-                        if (success && authViewModel.userType == "adm") {
+                        if (success && authViewModel.userType == "adm" || success && authViewModel.userType == "user") {
                             onLoginSuccess()
                         } else {
                             dialogMessage = "Acesso negado. Apenas administradores têm permissão."

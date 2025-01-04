@@ -1,34 +1,36 @@
 package com.example.lojasocialfirebase.navigation
 
 import PessoaViewModel
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.lojasocialfirebase.auth.*
 import com.example.lojasocialfirebase.calendario.CalendarViewModel
+import com.example.lojasocialfirebase.calendario.VolunteerCalendarScreen
 import com.example.lojasocialfirebase.dashboard.DashboardScreen
-import com.example.lojasocialfirebase.familia.FamiliaViewModel
-import com.example.lojasocialfirebase.familia.GestaoFamiliasScreen
-import com.example.lojasocialfirebase.familia.ListarFamiliasScreen
-import com.example.lojasocialfirebase.familia.RegisterFamiliaScreen
+import com.example.lojasocialfirebase.dashboard.UserDashboardScreen
+import com.example.lojasocialfirebase.familia.*
 import com.example.lojasocialfirebase.gestaoIcones.RegistrosOptionsScreen
-import com.example.lojasocialfirebase.pessoa.GestaoPessoasScreen
-import com.example.lojasocialfirebase.pessoa.RegisterPessoaScreen
-import com.example.lojasocialfirebase.tesouraria.TransactionsScreen
-import com.example.lojasocialfirebase.tesouraria.TreasuryOptionsScreen
-import com.example.lojasocialfirebase.tesouraria.TreasuryScreen
-import com.example.lojasocialfirebase.tesouraria.TreasuryViewModel
-import com.example.lojasocialfirebase.utilizadores.EditUserScreen
-import com.example.lojasocialfirebase.utilizadores.GestaoUtilizadoresScreen
-import com.example.lojasocialfirebase.utilizadores.ListUsersScreen
-import com.example.lojasocialfirebase.utilizadores.RegisterUserScreen
-import com.example.lojasocialfirebase.utilizadores.UserManagementScreen
+import com.example.lojasocialfirebase.pessoa.*
+import com.example.lojasocialfirebase.tesouraria.*
+import com.example.lojasocialfirebase.utilizadores.*
 import com.example.lojasocialfirebase.visita.*
-import com.example.lojasocialfirebase.voluntario.AdminCalendarScreen
-import com.example.lojasocialfirebase.voluntario.GestaoVoluntariosScreen
-import com.example.lojasocialfirebase.voluntario.RegisterVoluntarioScreen
-import com.example.lojasocialfirebase.voluntario.VoluntarioViewModel
+import com.example.lojasocialfirebase.voluntario.*
 
 @Composable
 fun AppNavHost() {
@@ -40,244 +42,181 @@ fun AppNavHost() {
     val voluntarioViewModel = VoluntarioViewModel()
     val calendarViewModel = CalendarViewModel()
     val treasuryViewModel = TreasuryViewModel()
+    var voluntarios by remember { mutableStateOf<List<Voluntario>>(emptyList()) }
+    var isLoading by remember { mutableStateOf(true) }
 
-    // Função de logout
     val onLogout = {
         authViewModel.logoutUser()
         navController.navigate("login") {
-            popUpTo("login") { inclusive = true }  // Limpa a pilha de navegação
+            popUpTo("login") { inclusive = true }
         }
     }
 
     NavHost(navController = navController, startDestination = "login") {
+        // Login e Dashboard
         composable("login") {
             LoginScreen(authViewModel) {
-                if (authViewModel.userType == "adm") {
-                    navController.navigate("dashboard")
+                when (authViewModel.userType) {
+                    "adm" -> navController.navigate("dashboard")
+                    "user" -> navController.navigate("userDashboard")
+                    else -> navController.navigate("Utilizador ou password incorretos, tente novamente.")
                 }
             }
         }
         composable("dashboard") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Utilizador",
-                onLogout
-            ) { modifier ->
+            MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) {
                 DashboardScreen(navController)
             }
         }
-        // Rota Intermediária: Gestão de Visitas
-        composable("gestaoVisitas") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Gestão de Visitas",
-                onLogout
-            ) { modifier ->
-                GestaoVisitasScreen(navController)
-            }
-        }
-        composable("registerVisita") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Utilizador",
-                onLogout
-            ) { modifier ->
-                RegisterVisitaScreen(visitaViewModel, familiaViewModel, voluntarioViewModel)
-            }
-        }
-        composable("registerFamilia") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Utilizador",
-                onLogout
-            ) { modifier ->
-                RegisterFamiliaScreen(familiaViewModel)
-            }
-        }
-        composable("userManagement") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Utilizador",
-                onLogout
-            ) { modifier ->
-                UserManagementScreen(authViewModel)
-            }
-        }
-        composable("registerPessoas") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Utilizador",
-                onLogout
-            ) { modifier ->
-                RegisterPessoaScreen(pessoaViewModel, familiaViewModel)
-            }
-        }
-        composable("registerVoluntario") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Utilizador",
-                onLogout
-            ) { modifier ->
-                RegisterVoluntarioScreen(voluntarioViewModel, pessoaViewModel)
-            }
-        }
-        composable("aprovarCalendario") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Utilizador",
-                onLogout
-            ) { modifier ->
-                AdminCalendarScreen(calendarViewModel)
-            }
-        }
-        composable("tesouraria") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Tesouraria",
-                onLogout
-            ) { modifier ->
-                TreasuryScreen(treasuryViewModel)
+        composable("userDashboard") {
+            MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) {
+                UserDashboardScreen(navController)
             }
         }
 
-        composable("transacoes") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Transações",
-                onLogout
-            ) { modifier ->
-                TransactionsScreen(treasuryViewModel)
+        // Subgráfico: Gestão de Registros
+        navigation(startDestination = "registrosOptions", route = "registrosNavGraph") {
+            composable("registrosOptions") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Registros", onLogout) {
+                    RegistrosOptionsScreen(navController)
+                }
             }
-        }
-        composable("tesourariaOptions") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Tesouraria",
-                onLogout
-            ) { modifier ->
-                TreasuryOptionsScreen(navController)
+            composable("gestaoVisitas") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Visitas", onLogout) {
+                    GestaoVisitasScreen(navController)
+                }
             }
-        }
-        composable("registrosOptions") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Gestão de Registros",
-                onLogout
-            ) { modifier ->
-                RegistrosOptionsScreen(navController)
+            composable("gestaoFamilias") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Famílias", onLogout) {
+                    GestaoFamiliasScreen(navController)
+                }
             }
-        }
-        composable("calendarOptions") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Calendário",
-                onLogout
-            ) { modifier ->
-                AdminCalendarScreen(calendarViewModel)
+            composable("gestaoPessoas") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Pessoas", onLogout) {
+                    GestaoPessoasScreen(navController)
+                }
             }
-        }
-        composable("gestaoFamilias") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Famílias",
-                onLogout
-            ) { modifier ->
-                GestaoFamiliasScreen(navController = navController)
+            composable("gestaoUtilizadores") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Utilizadores", onLogout) {
+                    GestaoUtilizadoresScreen(navController)
+                }
             }
-        }
-
-        composable("gestaoPessoas") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Pessoas",
-                onLogout
-            ) { modifier ->
-                GestaoPessoasScreen(navController = navController)
-            }
-        }
-        composable("gestaoUtilizadores") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Utilizadores",
-                onLogout
-            ) { modifier ->
-                GestaoUtilizadoresScreen(navController = navController)
-            }
-        }
-        composable("registerUser") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Registrar Utilizador",
-                onLogout
-            ) { modifier ->
-                RegisterUserScreen(authViewModel) {
-                    // Navegar após o registro
-                    navController.navigate("dashboard") {
-                        popUpTo("dashboard") { inclusive = true } // Limpa a pilha de navegação
-                    }
+            composable("gestaoVoluntarios") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Voluntários", onLogout) {
+                    GestaoVoluntariosScreen(navController)
                 }
             }
         }
-        composable("listUsers") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Listar Utilizadores",
-                onLogout
-            ) { modifier ->
-                ListUsersScreen(authViewModel) // Criar a tela para listar utilizadores
+
+        // Subgráfico: Tesouraria
+        navigation(startDestination = "tesouraria", route = "tesourariaNavGraph") {
+            composable("tesouraria") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Tesouraria", onLogout) {
+                    TreasuryScreen(treasuryViewModel)
+                }
+            }
+            composable("transacoes") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Transações", onLogout) {
+                    TransactionsScreen(treasuryViewModel)
+                }
+            }
+            composable("tesourariaOptions") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Opções da Tesouraria", onLogout) {
+                    TreasuryOptionsScreen(navController)
+                }
             }
         }
 
-        composable("listVisitas") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Listar Visitas",
-                onLogout
-            ) { modifier ->
-                ListVisitasScreen(visitaViewModel)
+        // Subgráfico: Visitas
+        navigation(startDestination = "listVisitas", route = "visitasNavGraph") {
+            composable("listVisitas") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Listar Visitas", onLogout) {
+                    ListVisitasScreen(visitaViewModel)
+                }
+            }
+            composable("registerVisita") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Registrar Visita", onLogout) {
+                    RegisterVisitaScreen(visitaViewModel, familiaViewModel, voluntarioViewModel)
+                }
+            }
+            composable("relatorioVisitas") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Relatório de Visitas", onLogout) {
+                    RelatorioVisitasScreen(visitaViewModel)
+                }
             }
         }
 
-        composable("listFamilias") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Listar Visitas",
-                onLogout
-            ) { modifier ->
-                ListarFamiliasScreen(familiaViewModel)
+        // Subgráfico: Utilizadores
+        navigation(startDestination = "listUsers", route = "usersNavGraph") {
+            composable("listUsers") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Listar Utilizadores", onLogout) {
+                    ListUsersScreen(authViewModel)
+                }
+            }
+            composable("registerUser") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Registrar Utilizador", onLogout) {
+                    RegisterUserScreen(authViewModel) {
+                        navController.navigate("dashboard") {
+                            popUpTo("dashboard") { inclusive = true }
+                        }
+                    }
+                }
+            }
+            composable("editUser") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Editar Utilizador", onLogout) {
+                    EditUserScreen(authViewModel)
+                }
             }
         }
 
-        composable("editUser") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Editar Utilizador",
-                onLogout
-            ) { modifier ->
-                EditUserScreen(authViewModel)
+        // Subgráfico: Famílias
+        navigation(startDestination = "listFamilias", route = "familiasNavGraph") {
+            composable("listFamilias") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Listar Famílias", onLogout) {
+                    ListarFamiliasScreen(familiaViewModel)
+                }
+            }
+            composable("registerFamilia") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Registrar Família", onLogout) {
+                    RegisterFamiliaScreen(familiaViewModel)
+                }
             }
         }
 
-        composable("gestaoVoluntarios") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Voluntários",
-                onLogout
-            ) { modifier ->
-                GestaoVoluntariosScreen(navController = navController)
+        composable("registerCalendar") {
+            // Usar LaunchedEffect para chamar a função suspensa
+            LaunchedEffect(Unit) {
+                try {
+                    voluntarios = voluntarioViewModel.getVoluntarios() // Chama a função suspensa
+                    isLoading = false
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    isLoading = false
+                }
+            }
+
+            if (isLoading) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
+            } else {
+                MainScaffold(navController, "Registrar Data no Calendário", onLogout) {
+                    VolunteerCalendarScreen(calendarViewModel, voluntarios)
+                }
             }
         }
 
-        composable("relatorioVisitas") {
-            MainScaffold(
-                navController,
-                authViewModel.currentUserEmail ?: "Relatório de Visitas",
-                onLogout
-            ) { modifier ->
-                RelatorioVisitasScreen(visitaViewModel)
+        // Subgráfico: Calendário (mantém outras rotas)
+        navigation(startDestination = "calendarOptions", route = "calendarNavGraph") {
+            composable("calendarOptions") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Opções de Calendário", onLogout) {
+                    AdminCalendarScreen(calendarViewModel)
+                }
             }
         }
+
     }
 }
-
-

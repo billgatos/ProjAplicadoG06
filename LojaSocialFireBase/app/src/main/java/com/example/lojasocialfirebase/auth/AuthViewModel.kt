@@ -11,7 +11,7 @@ import kotlinx.coroutines.tasks.await
 
 open class AuthViewModel : ViewModel() {
 
-    // Classe para representar o usuário
+    // Classe para representar o utilizador
     data class User(
         val id: String,
         val email: String,
@@ -24,15 +24,15 @@ open class AuthViewModel : ViewModel() {
     var userType: String? = null
         private set
 
-    // Propriedade para obter o e-mail do usuário logado
+    // Propriedade para obter o e-mail do utilizador logado
     val currentUserEmail: String?
         get() = auth.currentUser?.email
 
-    // Fluxo para armazenar a lista de usuários
+    // Fluxo para armazenar a lista de utilizador
     private val _users = MutableStateFlow<List<User>>(emptyList())
     val users: StateFlow<List<User>> = _users
 
-    // Função para carregar os usuários do Firestore
+    // Função para carregar os utilizadores do Firestore
     fun loadUsers() {
         viewModelScope.launch {
             try {
