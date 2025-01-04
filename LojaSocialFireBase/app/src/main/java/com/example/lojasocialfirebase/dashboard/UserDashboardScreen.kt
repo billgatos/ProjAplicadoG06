@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.lojasocialfirebase.R
+import com.example.lojasocialfirebase.extrafun.StyledTextIcon
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavCalendar
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavRegistros
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavRelatorioVisitas
@@ -83,18 +84,29 @@ fun UserDashboardScreen(navController: NavController) {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         // Navegação para o registerCalendar
-                        IconButton(
-                            onClick = {
-                                // Navega diretamente para registerCalendar
-                                navController.navigate("registerCalendar")
-                            },
-                            modifier = Modifier.size(80.dp)
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center,
+                            modifier = Modifier.padding(8.dp)
                         ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.calendario),
-                                contentDescription = "Registrar Data no Calendário",
-                                tint = darkSeaGreen,
-                                modifier = Modifier.size(60.dp)
+                            IconButton(
+                                onClick = {
+                                    // Navega diretamente para registerCalendar
+                                    navController.navigate("registerCalendar")
+                                },
+                                modifier = Modifier.size(80.dp)
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.calendario),
+                                    contentDescription = "Registrar Data no Calendário",
+                                    tint = darkSeaGreen,
+                                    modifier = Modifier.size(60.dp)
+                                )
+                            }
+                            StyledTextIcon(
+                                text = "Calendário",
+                                fontSize = 16, // Tamanho do texto
+                                modifier = Modifier.padding(top = 4.dp) // Espaçamento entre o ícone e o texto
                             )
                         }
                         GroupNavRegistros(navController) // Ícone de Registros
@@ -112,6 +124,5 @@ fun PreviewUserDashboardScreen() {
     val mockNavController = rememberNavController()
 
     // Renderiza o DashboardScreen com o controlador fictício
-    DashboardScreen(navController = mockNavController)
+    UserDashboardScreen(navController = mockNavController)
 }
-

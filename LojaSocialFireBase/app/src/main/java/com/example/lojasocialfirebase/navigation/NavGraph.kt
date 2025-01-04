@@ -26,6 +26,7 @@ import com.example.lojasocialfirebase.dashboard.DashboardScreen
 import com.example.lojasocialfirebase.dashboard.UserDashboardScreen
 import com.example.lojasocialfirebase.familia.*
 import com.example.lojasocialfirebase.gestaoIcones.RegistrosOptionsScreen
+import com.example.lojasocialfirebase.gestaoIcones.UserOptionsScreen
 import com.example.lojasocialfirebase.pessoa.*
 import com.example.lojasocialfirebase.tesouraria.*
 import com.example.lojasocialfirebase.utilizadores.*
@@ -71,6 +72,12 @@ fun AppNavHost() {
         composable("userDashboard") {
             MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) {
                 UserDashboardScreen(navController)
+            }
+        }
+
+        composable("userOptionRegister") {
+            MainScaffold(navController, authViewModel.currentUserEmail ?: "Utilizador", onLogout) {
+                UserOptionsScreen(navController)
             }
         }
 

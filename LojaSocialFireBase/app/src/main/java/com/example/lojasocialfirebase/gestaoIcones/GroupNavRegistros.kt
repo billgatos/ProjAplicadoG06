@@ -18,24 +18,53 @@ import com.example.lojasocialfirebase.ui.theme.darkSeaGreen
 
 @Composable
 fun GroupNavRegistros(navController: NavController) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier.padding(8.dp)
-    ) {
-        IconButton(onClick = { navController.navigate("registrosOptions") },
-            modifier = Modifier.size(80.dp) // Tamanho do botão
+    val currentRoute = navController.currentBackStackEntry?.destination?.route
+
+    // Exibe somente se estiver na rota correta
+    if (currentRoute == "dashboard") {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(8.dp)
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.registros),
-                contentDescription = "Gestão de Registros",
-                tint = darkSeaGreen, // Cor do ícone
-                modifier = Modifier.size(60.dp) // Tamanho do ícone
+            IconButton(
+                onClick = { navController.navigate("registrosOptions") },
+                modifier = Modifier.size(80.dp) // Tamanho do botão
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.registros),
+                    contentDescription = "Gestão de Registros",
+                    tint = darkSeaGreen, // Cor do ícone
+                    modifier = Modifier.size(60.dp) // Tamanho do ícone
+                )
+            }
+            StyledTextIcon(
+                text = "Registros",
+                fontSize = 16,
             )
         }
-        StyledTextIcon(
-            text = "Registros",
-            fontSize = 16,
-        )
+    }
+    else if(currentRoute == "userDashboard") {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(8.dp)
+        ) {
+            IconButton(
+                onClick = { navController.navigate("userOptionRegister") },
+                modifier = Modifier.size(80.dp) // Tamanho do botão
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.registros),
+                    contentDescription = "Gestão de Registros",
+                    tint = darkSeaGreen, // Cor do ícone
+                    modifier = Modifier.size(60.dp) // Tamanho do ícone
+                )
+            }
+            StyledTextIcon(
+                text = "Registros",
+                fontSize = 16,
+            )
+        }
     }
 }
