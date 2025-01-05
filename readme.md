@@ -59,3 +59,7 @@ A Loja Social oferece uma plataforma digital para gerenciar as operações diár
 - Registro e acompanhamento de atividades.
 
 ---
+
+# Capturas de Tela 📸
+## Dashboard Administrador
+![image](https://github.com/user-attachments/assets/fa90f6f8-9335-4cdf-ac89-c3ddb4318d5f)
