@@ -15,3 +15,48 @@ A Loja Social oferece uma plataforma digital para gerenciar as operações diár
 
 ## Principais Funcionalidades 🚀
 
+### 🔹 Gestão de Visitas
+- **Listar, registrar e consultar visitas realizadas.**
+- **Visualização de relatórios detalhados.**
+- **Integração com o calendário para fácil agendamento.**
+
+---
+
+### 🔹 Gestão de Famílias
+- Cadastro de famílias atendidas.
+- Atualização e edição de dados.
+- Organização das famílias para fácil acesso.
+
+---
+
+### 🔹 Gestão de Pessoas
+- Registro de indivíduos associados às famílias.
+- Acompanhamento do histórico de interações.
+
+---
+
+### 🔹 Gestão de Utilizadores
+- Sistema de autenticação (login/logout).
+- Perfis de administrador e utilizador.
+- Controle de permissões e gestão de acesso.
+
+---
+
+### 🔹 Gestão de Voluntários
+- Cadastro e gerenciamento de voluntários.
+- Monitoramento de disponibilidade no calendário.
+
+---
+
+### 🔹 Tesouraria
+- Registro de transações financeiras.
+- Visualização de relatórios financeiros.
+- Gestão de recursos monetários.
+
+---
+
+### 🔹 Calendário
+- Exibição de eventos agendados.
+- Registro e acompanhamento de atividades.
+
+---
