@@ -73,7 +73,32 @@ A Loja Social oferece uma plataforma digital para gerenciar as operações diár
 
 # Como Configurar o Projeto 🛠
 ## **Pré-requisitos**
-- **Android Studio** instalado (versão mais recente: Ladybug).
+- **Android Studio** instalado (versão mais recente: Ladybug 2024.02.1).
 - **JDK 23** (Java Development Kit).
 - **SDK Android 15.0 ("VanillaIceCream")** com API Level 35.
 - **Dispositivo Android** ou emulador configurado.
+
+## **Passos para Configuração**
+
+### **1. Clone o Repositório**
+Abra o terminal e execute o seguinte comando para clonar o projeto:
+```bash
+git clone https://github.com/billgatos/ProjAplicadoG06.git
+```
+---
+
+### **2. Abra no Android Studio**
+- No Android Studio, vá até **File > Open**.
+- Selecione o diretório do projeto clonado.
+
+---
+
+### **3. Sincronize as Dependências**
+- No Android Studio, clique em **Sync Project with Gradle Files** na barra de ferramentas superior.
+- Aguarde até que todas as dependências sejam baixadas.
+
+---
+
+### **4. Execute o Projeto**
+- Conecte um dispositivo físico ou inicie um emulador.
+- Clique no botão **Run** (ícone de play) no Android Studio para iniciar o aplicativo.
