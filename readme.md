@@ -3,14 +3,15 @@ Este projeto é uma solução para a Loja Social São Lázaro & São João do So
 
 O desenvolvimento foi realizado utilizando Android Studio com Jetpack Compose, proporcionando uma estrutura modular, escalável e amigável para o usuário.
 
-## Equipe de Desenvolvimento 
+## Equipe de Desenvolvimento 🛠️
 
 - **Roberto Rodrigues** - Aluno: 5278 🧑‍💻
 - **Victor Destefani** - Aluno: 18586 🧑‍💻
 - **Fernando Moura** - Aluno: 1154 🧑‍💻
 
-# Descrição
+# Descrição 🗒️
 
 A Loja Social oferece uma plataforma digital para gerenciar as operações diárias, incluindo o registro e acompanhamento de visitas, cadastro de famílias e pessoas, gestão de utilizadores e voluntários, entre outras funcionalidades. Tudo foi pensado para atender às necessidades específicas da loja social.
 
-Principais Funcionalidades
+## Principais Funcionalidades 🚀
+
