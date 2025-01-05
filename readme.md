@@ -62,14 +62,24 @@ A Loja Social oferece uma plataforma digital para gerenciar as operações diár
 
 # Capturas de Tela 📸
 
-## Dashboard Administrador
-![image](https://github.com/user-attachments/assets/fa90f6f8-9335-4cdf-ac89-c3ddb4318d5f)
+<div style="display: flex; justify-content: space-around;">
 
-## Gestão Famílias
-![image](https://github.com/user-attachments/assets/eacf3875-9799-4161-9b14-8519b276a45b)
+  <div style="text-align: center;">
+    <h3>Dashboard Administrador</h3>
+    <img src="https://github.com/user-attachments/assets/fa90f6f8-9335-4cdf-ac89-c3ddb4318d5f" alt="Dashboard Administrador" width="300">
+  </div>
 
-## Calendário para Aprovação de Voluntariado 
-![image](https://github.com/user-attachments/assets/bccce910-6fda-4cf3-96a9-1ee196c4826a)
+  <div style="text-align: center;">
+    <h3>Gestão Famílias</h3>
+    <img src="https://github.com/user-attachments/assets/eacf3875-9799-4161-9b14-8519b276a45b" alt="Gestão Famílias" width="300">
+  </div>
+
+  <div style="text-align: center;">
+    <h3>Calendário para Aprovação de Voluntariado</h3>
+    <img src="https://github.com/user-attachments/assets/bccce910-6fda-4cf3-96a9-1ee196c4826a" alt="Calendário para Aprovação de Voluntariado" width="300">
+  </div>
+
+</div>
 
 # Como Configurar o Projeto 🛠
 ## **Pré-requisitos**
