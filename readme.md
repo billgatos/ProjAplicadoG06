@@ -70,3 +70,5 @@ A Loja Social oferece uma plataforma digital para gerenciar as operações diár
 
 ## Calendário para Aprovação de Voluntariado 
 ![image](https://github.com/user-attachments/assets/bccce910-6fda-4cf3-96a9-1ee196c4826a)
+
+# Como Configurar o Projeto 🛠
