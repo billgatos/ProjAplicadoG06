@@ -1,5 +1,4 @@
-🏬 
-# Loja Social
+# Loja Social 🏬 
 Este projeto é uma solução para a Loja Social São Lázaro & São João do Souto, desenvolvida para facilitar a interação entre administradores, voluntários e beneficiários. A aplicação foi criada com foco em simplicidade e intuitividade, abrangendo as principais funcionalidades necessárias para uma gestão eficiente da loja social.
 
 O desenvolvimento foi realizado utilizando Android Studio com Jetpack Compose, proporcionando uma estrutura modular, escalável e amigável para o usuário.
