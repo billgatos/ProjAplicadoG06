@@ -17,8 +17,7 @@ A Loja Social oferece uma plataforma digital para gerenciar as operações diár
 
 ### 🔹 Gestão de Visitas
 - **Listar, registrar e consultar visitas realizadas.**
-- **Visualização de relatórios detalhados.**
-- **Integração com o calendário para fácil agendamento.**
+- **Visualização de relatórios detalhados possibilitando exportar por data.**
 
 ---
 
