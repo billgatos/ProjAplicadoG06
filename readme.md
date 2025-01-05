@@ -1,8 +1,8 @@
 # Loja Social
 
-Este projeto é uma solução para uma **Loja Social**, uma plataforma desenvolvida para facilitar a interação entre usuários e vendedores de produtos em um ambiente colaborativo. A proposta é criar um ambiente onde os clientes podem compartilhar experiências, recomendações e interagir diretamente com os vendedores e outros consumidores.
+Este projeto é uma solução para uma **Loja Social São Lázaro & São João do Souto**, uma aplicação desenvolvida para facilitar a interação entre os administradores, voluntários e beneficiários da loja social. Nossa proposta foi criar um ambiente simples e intuitivo para o utilizador, no qual abrangesse as principais funcionalidades para uma gestão prática da loja social.
 
-## Equipe
+## Equipe de Desenvolvimento
 
 - **Roberto Rodrigues** - Aluno: 5278
 - **Victor Destefani** - Aluno: 18586
@@ -10,7 +10,7 @@ Este projeto é uma solução para uma **Loja Social**, uma plataforma desenvolv
 
 ## Objetivo
 
-O principal objetivo deste projeto é oferecer uma solução digital que una aspectos sociais e comerciais, proporcionando uma experiência de compra personalizada e interativa para os usuários. A plataforma permite que os clientes comentem, avaliem e compartilhem produtos em suas redes sociais, além de possibilitar interações com outros consumidores e vendedores.
+O principal objetivo deste projeto é oferecer uma solução digital que una aspectos sociais, proporcionando uma experiência de compra personalizada e interativa para os usuários. A plataforma permite que os clientes comentem, avaliem e compartilhem produtos em suas redes sociais, além de possibilitar interações com outros consumidores e vendedores.
 
 ## Funcionalidades
 
