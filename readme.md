@@ -1,4 +1,4 @@
-<img src="[URL-da-imagem](https://www.google.com/imgres?q=png%20loja%20social%20icone&imgurl=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F5131%2F5131611.png&imgrefurl=https%3A%2F%2Fwww.flaticon.com%2Fbr%2Ficone-gratis%2Floja-local_5131611&docid=bpyNvR82MBvNDM&tbnid=DDBOWDlQUtco7M&vet=12ahUKEwjTksLxwd6KAxWW-wIHHfy7NvoQM3oECBwQAA..i&w=512&h=512&hcb=2&ved=2ahUKEwjTksLxwd6KAxWW-wIHHfy7NvoQM3oECBwQAA)" alt="Loja Social" width="50" height="50"> 
+# Loja Social
 
 Este projeto é uma solução para a Loja Social São Lázaro & São João do Souto, desenvolvida para facilitar a interação entre administradores, voluntários e beneficiários. A aplicação foi criada com foco em simplicidade e intuitividade, abrangendo as principais funcionalidades necessárias para uma gestão eficiente da loja social.
 
