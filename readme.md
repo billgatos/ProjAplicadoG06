@@ -61,5 +61,12 @@ A Loja Social oferece uma plataforma digital para gerenciar as operações diár
 ---
 
 # Capturas de Tela 📸
+
 ## Dashboard Administrador
 ![image](https://github.com/user-attachments/assets/fa90f6f8-9335-4cdf-ac89-c3ddb4318d5f)
+
+## Gestão Famílias
+![image](https://github.com/user-attachments/assets/eacf3875-9799-4161-9b14-8519b276a45b)
+
+## Calendário para Aprovação de Voluntariado 
+![image](https://github.com/user-attachments/assets/bccce910-6fda-4cf3-96a9-1ee196c4826a)
