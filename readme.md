@@ -102,3 +102,10 @@ git clone https://github.com/billgatos/ProjAplicadoG06.git
 ### **4. Execute o Projeto**
 - Conecte um dispositivo físico ou inicie um emulador.
 - Clique no botão **Run** (ícone de play) no Android Studio para iniciar o aplicativo.
+
+# Conclusão
+Estamos extremamente satisfeitos por termos realizado o desenvolvimento em prol da Loja Social, um projecto que acreditamos ter um impacto positivo na comunidade. Além disso, foi uma oportunidade enriquecedora de aprendizagem, onde todos nós evoluímos significativamente ao longo do processo de desenvolvimento.
+
+Reconhecemos que, apesar dos progressos alcançados, ainda há espaço para melhorias. Estamos empenhados em continuar a desenvolver este projecto, corrigindo erros e bugs que identificámos ao longo do caminho, com o objetivo de entregar uma solução cada vez mais robusta e eficiente.
+
+A nossa jornada não termina aqui, mas estamos entusiasmados com o que o futuro reserva e confiantes de que continuaremos a crescer e a aprender com cada desafio. Este projeto foi gratificante desenvolver e poder ultrapassar desafios dá-nos ânimo para continuar fortes nesta jornada. 🤓 
