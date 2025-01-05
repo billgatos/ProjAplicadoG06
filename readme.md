@@ -3,11 +3,11 @@ Este projeto é uma solução para a Loja Social São Lázaro & São João do So
 
 O desenvolvimento foi realizado utilizando Android Studio com Jetpack Compose, proporcionando uma estrutura modular, escalável e amigável para o usuário.
 
-🧑‍💻 ## Equipe de Desenvolvimento
+## Equipe de Desenvolvimento 
 
-- **Roberto Rodrigues** - Aluno: 5278
-- **Victor Destefani** - Aluno: 18586
-- **Fernando Moura** - Aluno: 1154
+- **Roberto Rodrigues** - Aluno: 5278 🧑‍💻
+- **Victor Destefani** - Aluno: 18586 🧑‍💻
+- **Fernando Moura** - Aluno: 1154 🧑‍💻
 
 # Descrição
 
