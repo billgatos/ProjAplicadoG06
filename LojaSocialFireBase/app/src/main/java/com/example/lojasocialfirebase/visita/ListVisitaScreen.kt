@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
 import com.example.lojasocialfirebase.ui.theme.buttonColor
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -92,7 +93,7 @@ fun VisitaCard(visita: Visita) {
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFF1F8E9)),
+        colors = CardDefaults.cardColors(containerColor = backgroundColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {

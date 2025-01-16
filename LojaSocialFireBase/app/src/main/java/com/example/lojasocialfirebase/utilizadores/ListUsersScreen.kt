@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.lojasocialfirebase.auth.AuthViewModel
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,11 +35,10 @@ fun ListUsersScreen(viewModel: AuthViewModel) {
     }
 
     Scaffold(
-        containerColor = Color(0xFFF1F8E9),
         topBar = {
             TopAppBar(
                 title = { Text("Listar Utilizadores") },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
             )
         }
     ) { paddingValues ->

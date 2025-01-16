@@ -15,10 +15,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.dashboard.DashboardOption
+import com.example.lojasocialfirebase.ui.theme.borderColor
 import com.example.lojasocialfirebase.ui.theme.darkSeaGreen
+import com.example.lojasocialfirebase.ui.theme.deepBlue
+import com.example.lojasocialfirebase.ui.theme.silverBlue
+import com.example.lojasocialfirebase.ui.theme.steelBlue
+import com.example.lojasocialfirebase.ui.theme.textColor
 
 @Composable
 fun IconOptionCard(navController: NavController, option: DashboardOption) {
@@ -26,7 +35,7 @@ fun IconOptionCard(navController: NavController, option: DashboardOption) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFA8E6CF)),
+        colors = CardDefaults.cardColors(containerColor = steelBlue),
         onClick = { navController.navigate(option.route) }
     ) {
         Row(
@@ -40,15 +49,23 @@ fun IconOptionCard(navController: NavController, option: DashboardOption) {
                 painter = painterResource(id = option.icon),
                 contentDescription = option.title,
                 modifier = Modifier.size(40.dp),
-                tint = darkSeaGreen
+                tint = silverBlue
             )
             Text(
                 text = option.title,
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF2E7D32),
-                modifier = Modifier.weight(1f)
+                color = Color.White,
+                modifier = Modifier.weight(1f),
+                fontWeight = FontWeight.Bold
             )
         }
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun IconOptionCardPreview() {
+    val navController = rememberNavController()
+    val option = DashboardOption(title = "Exemplo", route = "exampleRoute", icon = R.drawable.visita)
+    IconOptionCard(navController = navController, option = option)
+}

@@ -115,6 +115,7 @@ fun AppNavHost() {
             }
         }
 
+
         // Subgráfico: Tesouraria
         navigation(startDestination = "tesouraria", route = "tesourariaNavGraph") {
             composable("tesouraria") {
@@ -224,6 +225,31 @@ fun AppNavHost() {
                 }
             }
         }
+
+        // Subgráfico: Gestão de Voluntários
+        navigation(startDestination = "gestaoVoluntariosOptions", route = "voluntariosNavGraph") {
+            composable("gestaoVoluntariosOptions") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Voluntários", onLogout) {
+                    GestaoVoluntariosScreen(navController)
+                }
+            }
+            composable("registerVoluntario") {
+                MainScaffold(navController, "Registrar Voluntário", onLogout) {
+                    RegisterVoluntarioScreen(voluntarioViewModel, pessoaViewModel)
+                }
+            }
+            composable("listVoluntarios") {
+                MainScaffold(navController, "Listar Voluntários", onLogout) {
+                    ListVoluntariosScreen(voluntarioViewModel)
+                }
+            }
+            /*composable("editVoluntarios") {
+                MainScaffold(navController, "Editar Voluntários", onLogout) {
+                    EditVoluntariosScreen(voluntarioViewModel)
+                }
+            }*/
+        }
+
 
     }
 }

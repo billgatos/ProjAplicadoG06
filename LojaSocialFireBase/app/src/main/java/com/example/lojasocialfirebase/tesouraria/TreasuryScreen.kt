@@ -8,6 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.lojasocialfirebase.ui.theme.CustomTextField
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.bruteBlueSilver
+import com.example.lojasocialfirebase.ui.theme.deepBlue
+import com.example.lojasocialfirebase.ui.theme.lightBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -26,10 +30,9 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
         topBar = {
             TopAppBar(
                 title = { Text("Tesouraria") },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
             )
         },
-        containerColor = Color(0xFFF1F8E9)
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -42,7 +45,7 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
             Text(
                 text = "Saldo Atual: € ${"%.2f".format(balance)}",
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF2E7D32)
+                color = deepBlue
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -61,7 +64,7 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
                             description = ""
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50))
+                    colors = ButtonDefaults.buttonColors(containerColor = bruteBlueSilver)
                 ) {
                     Text("Adicionar Entrada", color = Color.White)
                 }
@@ -74,7 +77,7 @@ fun TreasuryScreen(viewModel: TreasuryViewModel) {
                             description = ""
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8BC34A))
+                    colors = ButtonDefaults.buttonColors(containerColor = lightBlue)
                 ) {
                     Text("Adicionar Saída", color = Color.White)
                 }

@@ -35,7 +35,7 @@ val Pink40 = Color(0xFF7D5260)
 val darkGreen = Color(0xFF006400)
 val darkSeaGreen = Color(0xFF8FBC8F)
 
-
+/*
 // Cores personalizadas
 val lightGreen = Color(0xFFA8E6CF)
 val buttonColor = Color(0xFF56C596)
@@ -44,6 +44,18 @@ val backgroundColor = Color(0xFFF1F8E9)
 val militarGreen = Color(0xFF4B5320)
 val silverGreen = Color(0xFFB0C4B1)
 val silverBrute = Color(0xFF4A4A4A)
+*/
+
+// Cores personalizadas
+val lightBlue = Color(0xFFADD8E6) // Azul claro
+val buttonColor = Color(0xFF1E90FF) // Azul intenso para botões
+val textColor = Color(0xFF00008B) // Azul escuro para textos
+val backgroundColor = Color(0xFFE6F7FF) // Azul bem claro para fundo
+val deepBlue = Color(0xFF000080) // Azul profundo
+val silverBlue = Color(0xFFB0C4DE) // Azul prateado
+val steelBlue = Color(0xFF4682B4) // Azul aço
+val borderColor = Color(0xFF5A9BD5)
+val bruteBlueSilver = Color(0xFF34495E)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,16 +66,19 @@ fun CustomTextField(
     modifier: Modifier = Modifier, // Parâmetro modifier com valor padrão
     enabled: Boolean = true         // Novo parâmetro enabled com valor padrão true
 ) {
-    val lightGreen = Color(0xFFA8E6CF)
-    val borderColor = Color(0xFF56C596)
-    val textColor: Color = Color(0xFF004D40) // Cor do texto digitado
 
     TextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label, color = borderColor) },
+        label = { Text(
+            label,
+            color = borderColor,
+            style = MaterialTheme.typography.bodyLarge.copy(
+                fontWeight = FontWeight.Bold // Letras mais intensas
+            )
+        )  },
         colors = TextFieldDefaults.textFieldColors(
-            containerColor = lightGreen,
+            containerColor = lightBlue,
             focusedIndicatorColor = borderColor,
             unfocusedIndicatorColor = borderColor,
             cursorColor = borderColor,
@@ -82,21 +97,22 @@ fun CustomTextField(
     )
 }
 
-
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomTextPassword(value: String, onValueChange: (String) -> Unit, label: String, isPassword: Boolean = false) {
-    val borderColor = Color(0xFF56C596)
-
     TextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label, color = borderColor) },
+        label = { Text(
+            label,
+            color = borderColor,
+            style = MaterialTheme.typography.bodyLarge.copy(
+                fontWeight = FontWeight.Bold // Letras mais intensas
+            )
+        )  },
         visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
         colors = TextFieldDefaults.textFieldColors(
-            containerColor = lightGreen,
+            containerColor = lightBlue,
             focusedIndicatorColor = borderColor,
             unfocusedIndicatorColor = borderColor,
             cursorColor = borderColor
@@ -113,7 +129,7 @@ fun CustomDialog(message: String, onDismiss: () -> Unit) {
     Dialog(onDismissRequest = onDismiss) {
         Box(
             modifier = Modifier
-                .background(color = lightGreen, shape = RoundedCornerShape(12.dp))
+                .background(color = lightBlue, shape = RoundedCornerShape(12.dp))
                 .padding(24.dp),
             contentAlignment = Alignment.Center
         ) {

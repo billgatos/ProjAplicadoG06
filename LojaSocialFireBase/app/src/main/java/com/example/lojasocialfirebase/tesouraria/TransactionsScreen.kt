@@ -29,6 +29,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.lojasocialfirebase.ui.theme.CustomTextField
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.bruteBlueSilver
+import com.example.lojasocialfirebase.ui.theme.deepBlue
+import com.example.lojasocialfirebase.ui.theme.lightBlue
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -60,10 +64,9 @@ fun TransactionsScreen(viewModel: TreasuryViewModel) {
         topBar = {
             TopAppBar(
                 title = { Text("Transações") },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
             )
         },
-        containerColor = Color(0xFFF1F8E9) // Fundo verde claro
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -74,7 +77,7 @@ fun TransactionsScreen(viewModel: TreasuryViewModel) {
             Text(
                 text = "Lista de Transações",
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF2E7D32)
+                color = deepBlue
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -111,7 +114,7 @@ fun TransactionsScreen(viewModel: TreasuryViewModel) {
                             }
                                 .sortedByDescending { it.date.toDateOrNull() } // Ordenar pela data e hora
                         },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF56C596)) // Verde
+                        colors = ButtonDefaults.buttonColors(containerColor = bruteBlueSilver) // Verde
                     ) {
                         Text("Filtrar")
                     }
@@ -124,7 +127,7 @@ fun TransactionsScreen(viewModel: TreasuryViewModel) {
                             filteredTransactions =
                                 transactions.sortedByDescending { it.date.toDateOrNull() }
                         },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F)) // Vermelho
+                        colors = ButtonDefaults.buttonColors(containerColor = lightBlue) // Vermelho
                     ) {
                         Text("Limpar", color = Color.White)
                     }

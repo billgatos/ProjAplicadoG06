@@ -14,7 +14,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.extrafun.StyledTextIcon
+import com.example.lojasocialfirebase.ui.theme.bruteBlueSilver
 import com.example.lojasocialfirebase.ui.theme.darkSeaGreen
+import com.example.lojasocialfirebase.ui.theme.silverBlue
 
 @Composable
 fun GroupNavCalendar(navController: NavController) {
@@ -29,7 +31,7 @@ fun GroupNavCalendar(navController: NavController) {
             Icon(
                 painter = painterResource(id = R.drawable.calendario), // Ícone do calendário
                 contentDescription = "Gestão de Calendário",
-                tint = darkSeaGreen, // Cor do ícone
+                tint = bruteBlueSilver, // Cor do ícone
                 modifier = Modifier.size(60.dp) // Tamanho do ícone
             )
         }

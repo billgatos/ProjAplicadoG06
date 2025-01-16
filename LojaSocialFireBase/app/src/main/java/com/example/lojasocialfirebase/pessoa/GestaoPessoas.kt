@@ -19,6 +19,8 @@ import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.dashboard.DashboardOption
 import com.example.lojasocialfirebase.gestaoIcones.IconOptionCard
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.deepBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,11 +32,10 @@ fun GestaoPessoasScreen(navController: NavController) {
     )
 
     Scaffold(
-        containerColor = Color(0xFFF1F8E9),
         topBar = {
             TopAppBar(
                 title = { Text("Gestão de Pessoas") },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
             )
         }
     ) { paddingValues ->
@@ -49,7 +50,7 @@ fun GestaoPessoasScreen(navController: NavController) {
             Text(
                 text = "Gestão de Pessoas",
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF2E7D32)
+                color = deepBlue
             )
 
             // Lista de opções para a gestão de pessoas

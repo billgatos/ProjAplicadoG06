@@ -21,6 +21,8 @@ import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.dashboard.DashboardOption
 import com.example.lojasocialfirebase.dashboard.DashboardOptionsList
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.deepBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,11 +33,10 @@ fun TreasuryOptionsScreen(navController: NavController) {
     )
 
     Scaffold(
-        containerColor = Color(0xFFF1F8E9),
         topBar = {
             TopAppBar(
                 title = { Text("Opções da Tesouraria") },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
             )
         }
     ) { paddingValues ->
@@ -50,7 +51,7 @@ fun TreasuryOptionsScreen(navController: NavController) {
             Text(
                 text = "Gestão Tesouraria",
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF2E7D32)
+                color = deepBlue
             )
 
             Spacer(modifier = Modifier.height(16.dp))

@@ -19,6 +19,8 @@ import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.dashboard.DashboardOption
 import com.example.lojasocialfirebase.gestaoIcones.IconOptionCard
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.deepBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,7 +32,7 @@ fun GestaoFamiliasScreen(navController: NavController) {
     )
 
     Scaffold(
-        containerColor = Color(0xFFF1F8E9),
+        containerColor = backgroundColor,
         topBar = {
             TopAppBar(
                 title = { Text("Gestão de Famílias") },
@@ -49,7 +51,7 @@ fun GestaoFamiliasScreen(navController: NavController) {
             Text(
                 text = "Gestão de Famílias",
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF2E7D32)
+                color = deepBlue
             )
 
             // Lista de opções para a gestão de famílias

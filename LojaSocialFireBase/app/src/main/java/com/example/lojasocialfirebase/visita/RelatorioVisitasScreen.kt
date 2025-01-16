@@ -42,6 +42,7 @@ import androidx.compose.ui.text.Paragraph
 import androidx.compose.ui.unit.dp
 import com.example.lojasocialfirebase.extrafun.CountryData
 import com.example.lojasocialfirebase.ui.theme.CustomTextField
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
 import com.example.lojasocialfirebase.ui.theme.buttonColor
 import com.itextpdf.kernel.pdf.PdfDocument
 import com.itextpdf.kernel.pdf.PdfWriter
@@ -141,7 +142,7 @@ fun RelatorioVisitasScreen(
                 modifier = if (compactBars) Modifier.height(48.dp) else Modifier
             )
         },
-        containerColor = Color(0xFFF1F8E9)
+        containerColor = backgroundColor
     ) { paddingValues ->
         Column(
             modifier = Modifier

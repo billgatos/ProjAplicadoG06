@@ -19,6 +19,8 @@ import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.dashboard.DashboardOption
 import com.example.lojasocialfirebase.gestaoIcones.IconOptionCard
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.deepBlue
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -31,7 +33,7 @@ fun GestaoVisitasScreen(navController: NavController) {
     )
 
     Scaffold(
-        containerColor = Color(0xFFF1F8E9),
+        containerColor = backgroundColor,
         topBar = {
             TopAppBar(
                 title = { Text("Gestão de Visitas") },
@@ -50,7 +52,7 @@ fun GestaoVisitasScreen(navController: NavController) {
             Text(
                 text = "Gestão de Visitas",
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF2E7D32)
+                color = deepBlue
             )
 
             // Lista de opções para a gestão de visitas

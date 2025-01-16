@@ -14,7 +14,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.extrafun.StyledTextIcon
+import com.example.lojasocialfirebase.ui.theme.bruteBlueSilver
 import com.example.lojasocialfirebase.ui.theme.darkSeaGreen
+import com.example.lojasocialfirebase.ui.theme.silverBlue
 
 @Composable
 fun GroupNavRelatorioVisitas(navController: NavController) {
@@ -29,7 +31,7 @@ fun GroupNavRelatorioVisitas(navController: NavController) {
             Icon(
                 painter = painterResource(id = R.drawable.relatorio), // Ícone do relatório
                 contentDescription = "Relatório de Visitas",
-                tint = darkSeaGreen, // Cor do ícone
+                tint = bruteBlueSilver, // Cor do ícone
                 modifier = Modifier.size(60.dp) // Tamanho do ícone
             )
         }

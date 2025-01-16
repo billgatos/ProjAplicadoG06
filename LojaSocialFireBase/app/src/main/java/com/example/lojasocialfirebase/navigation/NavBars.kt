@@ -19,8 +19,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.lojasocialfirebase.R  // Importa a referência ao recurso R para acessar os ícones
-import com.example.lojasocialfirebase.ui.theme.silverBrute
-import com.example.lojasocialfirebase.ui.theme.silverGreen
+import com.example.lojasocialfirebase.ui.theme.bruteBlueSilver
+import com.example.lojasocialfirebase.ui.theme.silverBlue
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,7 +41,7 @@ fun TopNavBar(userEmail: String) {
                 )
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = silverGreen)
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = silverBlue)
     )
 }
 
@@ -50,7 +50,7 @@ fun TopNavBar(userEmail: String) {
 fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
     BottomAppBar(
         modifier = Modifier.height(42.dp), // Define a altura personalizada
-        containerColor = silverGreen,
+        containerColor = silverBlue,
         contentColor = Color.White
     ) {
         // Ícone de Logout (esquerda)
@@ -58,7 +58,7 @@ fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
             Icon(
                 painter = painterResource(id = R.drawable.exit),
                 contentDescription = "Sair",
-                tint = silverBrute
+                tint = bruteBlueSilver
             )
         }
 
@@ -69,7 +69,7 @@ fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
             Icon(
                 painter = painterResource(id = R.drawable.backbutton), // Substitua pelo ícone correto
                 contentDescription = "Voltar",
-                tint = silverBrute
+                tint = bruteBlueSilver
             )
         }
 
@@ -80,7 +80,7 @@ fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
             Icon(
                 painter = painterResource(id = R.drawable.homeicon),
                 contentDescription = "Página Inicial",
-                tint = silverBrute
+                tint = bruteBlueSilver
             )
         }
 
@@ -91,7 +91,7 @@ fun BottomNavBar(navController: NavController, onLogout: () -> Unit) {
             Icon(
                 painter = painterResource(id = R.drawable.notification),
                 contentDescription = "Notificações",
-                tint = silverBrute
+                tint = bruteBlueSilver
             )
         }
     }

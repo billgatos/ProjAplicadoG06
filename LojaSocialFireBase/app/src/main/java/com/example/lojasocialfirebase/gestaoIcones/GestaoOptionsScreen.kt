@@ -18,10 +18,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.lojasocialfirebase.R
 import com.example.lojasocialfirebase.dashboard.DashboardOption
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.deepBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,7 +39,7 @@ fun RegistrosOptionsScreen(navController: NavController) {
     )
 
     Scaffold(
-        containerColor = Color(0xFFF1F8E9),
+        containerColor = backgroundColor,
         topBar = {
             TopAppBar(
                 title = { Text("Gestão de Registros") },
@@ -53,7 +57,7 @@ fun RegistrosOptionsScreen(navController: NavController) {
             Text(
                 text = "Gestão de Registros",
                 style = MaterialTheme.typography.headlineMedium,
-                color = Color(0xFF2E7D32),
+                color = deepBlue,
                 modifier = Modifier.padding(top = 16.dp, bottom = 32.dp)
             )
 
@@ -75,4 +79,12 @@ fun RegistrosOptionsScreen(navController: NavController) {
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun RegistrosOptionsScreenPreview() {
+    val navController = rememberNavController()
+    RegistrosOptionsScreen(navController = navController)
+}
+
 

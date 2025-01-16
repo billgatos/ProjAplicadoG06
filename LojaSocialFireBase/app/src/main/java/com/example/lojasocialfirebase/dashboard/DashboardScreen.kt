@@ -29,12 +29,14 @@ import com.example.lojasocialfirebase.gestaoIcones.GroupNavCalendar
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavRegistros
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavRelatorioVisitas
 import com.example.lojasocialfirebase.gestaoIcones.GroupNavTesouraria
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
 import com.example.lojasocialfirebase.ui.theme.darkGreen
+import com.example.lojasocialfirebase.ui.theme.deepBlue
 
 @Composable
 fun DashboardScreen(navController: NavController) {
     Scaffold(
-        containerColor = Color(0xFFF1F8E9),
+        containerColor = backgroundColor,
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -65,7 +67,7 @@ fun DashboardScreen(navController: NavController) {
                         text = "Painel Administrador",
                         style = MaterialTheme.typography.titleLarge,
                         fontFamily = spectralFont,
-                        color = darkGreen,
+                        color = deepBlue,
                         fontSize = 22.sp,
                         letterSpacing = 1.5.sp, // Espaçamento entre as letras
                         modifier = Modifier.padding(bottom = 16.dp)

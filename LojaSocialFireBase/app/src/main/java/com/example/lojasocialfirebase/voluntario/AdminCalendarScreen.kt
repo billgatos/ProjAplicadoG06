@@ -11,6 +11,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.lojasocialfirebase.calendario.CalendarRequest
 import com.example.lojasocialfirebase.calendario.CalendarViewModel
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.silverBlue
+
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -25,7 +30,6 @@ fun AdminCalendarScreen(calendarViewModel: CalendarViewModel) {
         calendarViewModel.getCalendarRequests { result ->
             requests = result
             loading = false
-            // Inicializar o estado de bloqueio para todos os pedidos
             result.forEach { request ->
                 lockedRequests[request.id] = request.status == "Aprovado" || request.status == "Rejeitado"
             }
@@ -41,32 +45,31 @@ fun AdminCalendarScreen(calendarViewModel: CalendarViewModel) {
         topBar = {
             TopAppBar(
                 title = { Text("Validação de Calendário") },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
             )
         }
     ) { paddingValues ->
         if (loading) {
             Box(
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
                 CircularProgressIndicator()
             }
         } else {
-            Column(
+            LazyColumn(
                 modifier = Modifier
                     .padding(paddingValues)
-                    .padding(16.dp)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                requests.forEach { request ->
+                items(requests) { request ->
                     val isLocked = lockedRequests[request.id] ?: false
                     var status by remember { mutableStateOf(request.status) }
 
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(8.dp)
                             .combinedClickable(
                                 onClick = {},
                                 onDoubleClick = {
@@ -76,7 +79,7 @@ fun AdminCalendarScreen(calendarViewModel: CalendarViewModel) {
                                     }
                                 }
                             ),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFA8E6CF))
+                        colors = CardDefaults.cardColors(containerColor = silverBlue)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Text("Voluntário: ${request.voluntarioNome}", color = Color.Black)
@@ -94,7 +97,7 @@ fun AdminCalendarScreen(calendarViewModel: CalendarViewModel) {
                                             status = "Aprovado"
                                         }
                                     },
-                                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8BC34A)), // Verde claro
+                                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF8BC34A)),
                                     enabled = !isLocked
                                 ) {
                                     Text("Aprovar")
@@ -106,7 +109,7 @@ fun AdminCalendarScreen(calendarViewModel: CalendarViewModel) {
                                             status = "Rejeitado"
                                         }
                                     },
-                                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF44336)), // Vermelho
+                                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF44336)),
                                     enabled = !isLocked
                                 ) {
                                     Text("Rejeitar")

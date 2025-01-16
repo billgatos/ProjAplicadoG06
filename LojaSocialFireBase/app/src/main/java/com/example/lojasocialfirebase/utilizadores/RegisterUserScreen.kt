@@ -24,6 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 
 import com.example.lojasocialfirebase.auth.AuthViewModel
 import com.example.lojasocialfirebase.ui.theme.CustomTextField
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
+import com.example.lojasocialfirebase.ui.theme.buttonColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,11 +37,10 @@ fun RegisterUserScreen(authViewModel: AuthViewModel, onRegisterSuccess: () -> Un
     val languages = listOf("PT", "EN") // Opções de idioma
 
     Scaffold(
-        containerColor = Color(0xFFF1F8E9), // Define o fundo da tela
         topBar = {
             TopAppBar(
                 title = { Text("Registrar Utilizador") },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
             )
         }
     ) { paddingValues ->
@@ -100,7 +101,7 @@ fun RegisterUserScreen(authViewModel: AuthViewModel, onRegisterSuccess: () -> Un
                             if (success) onRegisterSuccess()
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF56C596)),
+                    colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text("Registrar", color = Color.White)

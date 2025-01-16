@@ -9,12 +9,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.lojasocialfirebase.R
-import com.example.lojasocialfirebase.ui.theme.militarGreen
+import com.example.lojasocialfirebase.ui.theme.steelBlue
 
 @Composable
 fun StyledTextIcon(
     text: String,
-    color: Color = militarGreen, // Cor padrão
+    color: Color = steelBlue, // Cor padrão
     fontSize: Int = 18, // Tamanho padrão
     fontWeight: FontWeight = FontWeight.Bold, // Peso padrão
     modifier: Modifier = Modifier // Modificador opcional

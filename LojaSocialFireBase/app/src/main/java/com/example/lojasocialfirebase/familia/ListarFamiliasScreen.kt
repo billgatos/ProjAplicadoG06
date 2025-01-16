@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.lojasocialfirebase.extrafun.CountryData
+import com.example.lojasocialfirebase.ui.theme.backgroundColor
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,7 +49,7 @@ fun ListarFamiliasScreen(
                 modifier = if (compactBars) Modifier.height(48.dp) else Modifier
             )
         },
-        containerColor = Color(0xFFF1F8E9)
+        containerColor = backgroundColor
     ) { paddingValues ->
         Box(
             modifier = Modifier
