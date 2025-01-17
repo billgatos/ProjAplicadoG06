@@ -35,7 +35,7 @@ fun GroupNavRegistros(navController: NavController) {
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.registros),
-                    contentDescription = "Gestão de Registros",
+                    contentDescription = "Gestão de Registos",
                     tint = bruteBlueSilver, // Cor do ícone
                     modifier = Modifier.size(60.dp) // Tamanho do ícone
                 )

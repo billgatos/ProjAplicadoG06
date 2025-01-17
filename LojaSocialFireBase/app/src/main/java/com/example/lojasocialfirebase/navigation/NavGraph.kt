@@ -250,6 +250,28 @@ fun AppNavHost() {
             }*/
         }
 
-
+        // Subgráfico: Gestão de Pessoas
+        navigation(startDestination = "gestaoPessoasOptions", route = "pessoasNavGraph") {
+            composable("gestaoPessoasOptions") {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Pessoas", onLogout) {
+                    GestaoPessoasScreen(navController)
+                }
+            }
+            composable("registerPessoas") {
+                MainScaffold(navController, "Registrar Pessoas", onLogout) {
+                    RegisterPessoaScreen(pessoaViewModel, familiaViewModel)
+                }
+            }
+            /*composable("listPessoas") {
+                MainScaffold(navController, "Listar Pessoas", onLogout) {
+                    ListPessoasScreen(pessoaViewModel)
+                }
+            }
+            composable("editPessoas") {
+                MainScaffold(navController, "Editar Pessoas", onLogout) {
+                    EditPessoasScreen(pessoaViewModel)
+                }
+            }*/
+        }
     }
 }

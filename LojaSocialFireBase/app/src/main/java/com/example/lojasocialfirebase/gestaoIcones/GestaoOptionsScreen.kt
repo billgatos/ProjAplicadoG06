@@ -55,7 +55,7 @@ fun RegistrosOptionsScreen(navController: NavController) {
         ) {
             // Título na parte superior
             Text(
-                text = "Gestão de Registros",
+                text = "Gestão de Registos",
                 style = MaterialTheme.typography.headlineMedium,
                 color = deepBlue,
                 modifier = Modifier.padding(top = 16.dp, bottom = 32.dp)

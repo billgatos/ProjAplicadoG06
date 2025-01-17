@@ -47,7 +47,7 @@ fun UserOptionsScreen(navController: NavController) {
         ) {
             // Título na parte superior
             Text(
-                text = "Gestão de Registros",
+                text = "Gestão de Registos",
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color(0xFF2E7D32),
                 modifier = Modifier.padding(top = 16.dp, bottom = 32.dp)
