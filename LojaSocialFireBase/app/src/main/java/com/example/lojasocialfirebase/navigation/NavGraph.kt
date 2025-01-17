@@ -84,7 +84,7 @@ fun AppNavHost() {
         // Subgráfico: Gestão de Registros
         navigation(startDestination = "registrosOptions", route = "registrosNavGraph") {
             composable("registrosOptions") {
-                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Registros", onLogout) {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Gestão de Registos", onLogout) {
                     RegistrosOptionsScreen(navController)
                 }
             }
@@ -143,7 +143,7 @@ fun AppNavHost() {
                 }
             }
             composable("registerVisita") {
-                MainScaffold(navController, authViewModel.currentUserEmail ?: "Registrar Visita", onLogout) {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Registar Visita", onLogout) {
                     RegisterVisitaScreen(visitaViewModel, familiaViewModel, voluntarioViewModel)
                 }
             }
@@ -162,7 +162,7 @@ fun AppNavHost() {
                 }
             }
             composable("registerUser") {
-                MainScaffold(navController, authViewModel.currentUserEmail ?: "Registrar Utilizador", onLogout) {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Registar Utilizador", onLogout) {
                     RegisterUserScreen(authViewModel) {
                         navController.navigate("dashboard") {
                             popUpTo("dashboard") { inclusive = true }
@@ -185,7 +185,7 @@ fun AppNavHost() {
                 }
             }
             composable("registerFamilia") {
-                MainScaffold(navController, authViewModel.currentUserEmail ?: "Registrar Família", onLogout) {
+                MainScaffold(navController, authViewModel.currentUserEmail ?: "Registar Família", onLogout) {
                     RegisterFamiliaScreen(familiaViewModel)
                 }
             }
@@ -211,7 +211,7 @@ fun AppNavHost() {
                     CircularProgressIndicator()
                 }
             } else {
-                MainScaffold(navController, "Registrar Data no Calendário", onLogout) {
+                MainScaffold(navController, "Registar Data no Calendário", onLogout) {
                     VolunteerCalendarScreen(calendarViewModel, voluntarios)
                 }
             }
@@ -234,7 +234,7 @@ fun AppNavHost() {
                 }
             }
             composable("registerVoluntario") {
-                MainScaffold(navController, "Registrar Voluntário", onLogout) {
+                MainScaffold(navController, "Registar Voluntário", onLogout) {
                     RegisterVoluntarioScreen(voluntarioViewModel, pessoaViewModel)
                 }
             }
@@ -258,7 +258,7 @@ fun AppNavHost() {
                 }
             }
             composable("registerPessoas") {
-                MainScaffold(navController, "Registrar Pessoas", onLogout) {
+                MainScaffold(navController, "Registar Pessoas", onLogout) {
                     RegisterPessoaScreen(pessoaViewModel, familiaViewModel)
                 }
             }

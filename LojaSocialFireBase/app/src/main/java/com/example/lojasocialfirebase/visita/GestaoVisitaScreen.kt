@@ -27,7 +27,7 @@ import com.example.lojasocialfirebase.ui.theme.deepBlue
 @Composable
 fun GestaoVisitasScreen(navController: NavController) {
     val options = listOf(
-        DashboardOption(title = "Registrar Visitas", route = "registerVisita", icon = R.drawable.adicionar),
+        DashboardOption(title = "Registar Visitas", route = "registerVisita", icon = R.drawable.adicionar),
         DashboardOption(title = "Listar Visitas", route = "listVisitas", icon = R.drawable.ler),
         DashboardOption(title = "Editar Visitas", route = "editVisitas", icon = R.drawable.editar)
     )

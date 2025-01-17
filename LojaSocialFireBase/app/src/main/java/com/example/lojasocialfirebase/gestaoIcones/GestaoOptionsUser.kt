@@ -34,7 +34,7 @@ fun UserOptionsScreen(navController: NavController) {
         containerColor = Color(0xFFF1F8E9),
         topBar = {
             TopAppBar(
-                title = { Text("Gestão de Registros") },
+                title = { Text("Gestão de Registos") },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
             )
         }

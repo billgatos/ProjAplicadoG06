@@ -42,7 +42,7 @@ fun RegistrosOptionsScreen(navController: NavController) {
         containerColor = backgroundColor,
         topBar = {
             TopAppBar(
-                title = { Text("Gestão de Registros") },
+                title = { Text("Gestão de Registos") },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF56C596))
             )
         }

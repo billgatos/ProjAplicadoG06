@@ -27,7 +27,7 @@ import com.example.lojasocialfirebase.ui.theme.deepBlue
 fun GestaoVoluntariosScreen(navController: NavController) {
     val options = listOf(
         DashboardOption(
-            title = "Registrar Voluntários",
+            title = "Registar Voluntários",
             route = "registerVoluntario",
             icon = R.drawable.adicionar
         ),

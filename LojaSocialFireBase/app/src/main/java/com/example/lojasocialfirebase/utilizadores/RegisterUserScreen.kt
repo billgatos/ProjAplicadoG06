@@ -39,7 +39,7 @@ fun RegisterUserScreen(authViewModel: AuthViewModel, onRegisterSuccess: () -> Un
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Registrar Utilizador") },
+                title = { Text("Registar Utilizador") },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
             )
         }
@@ -104,7 +104,7 @@ fun RegisterUserScreen(authViewModel: AuthViewModel, onRegisterSuccess: () -> Un
                     colors = ButtonDefaults.buttonColors(containerColor = buttonColor),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Registrar", color = Color.White)
+                    Text("Registar", color = Color.White)
                 }
             }
         }

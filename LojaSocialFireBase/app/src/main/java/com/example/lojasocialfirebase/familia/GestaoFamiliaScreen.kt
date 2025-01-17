@@ -26,7 +26,7 @@ import com.example.lojasocialfirebase.ui.theme.deepBlue
 @Composable
 fun GestaoFamiliasScreen(navController: NavController) {
     val options = listOf(
-        DashboardOption(title = "Registrar Famílias", route = "registerFamilia", icon = R.drawable.adicionar),
+        DashboardOption(title = "Registar Famílias", route = "registerFamilia", icon = R.drawable.adicionar),
         DashboardOption(title = "Listar Famílias", route = "listFamilias", icon = R.drawable.ler),
         DashboardOption(title = "Editar Famílias", route = "editFamilias", icon = R.drawable.editar)
     )

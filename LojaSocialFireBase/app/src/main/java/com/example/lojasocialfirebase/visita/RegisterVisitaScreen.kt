@@ -63,7 +63,7 @@ fun RegisterVisitaScreen(
         containerColor = backgroundColor,
         topBar = {
             TopAppBar(
-                title = { Text("Registrar Visita", color = Color.White) },
+                title = { Text("Registar Visita", color = Color.White) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = buttonColor)
             )
         }
@@ -82,7 +82,7 @@ fun RegisterVisitaScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Registrar Visita",
+                    text = "Registar Visita",
                     style = MaterialTheme.typography.headlineMedium,
                     color = textColor
                 )
@@ -266,7 +266,7 @@ fun RegisterVisitaScreen(
                         shape = RoundedCornerShape(8.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("Registrar Visita", color = Color.White)
+                        Text("Registar Visita", color = Color.White)
                     }
                 }
 

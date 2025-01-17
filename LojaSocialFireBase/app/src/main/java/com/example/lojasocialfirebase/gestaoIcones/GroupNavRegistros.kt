@@ -41,7 +41,7 @@ fun GroupNavRegistros(navController: NavController) {
                 )
             }
             StyledTextIcon(
-                text = "Registros",
+                text = "Registos",
                 fontSize = 16,
             )
         }

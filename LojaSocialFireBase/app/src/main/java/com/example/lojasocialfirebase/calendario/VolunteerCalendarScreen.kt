@@ -85,9 +85,9 @@ fun VolunteerCalendarScreen(calendarViewModel: CalendarViewModel, voluntarios: L
                             selectedDate
                         ) { success ->
                             dialogMessage = if (success) {
-                                "Data registrada com sucesso!"
+                                "Data registada com sucesso!"
                             } else {
-                                "Erro ao registrar a data."
+                                "Erro ao registar a data."
                             }
                         }
                     } else {
@@ -96,7 +96,7 @@ fun VolunteerCalendarScreen(calendarViewModel: CalendarViewModel, voluntarios: L
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF004D40))
             ) {
-                Text("Registrar Data", color = Color.White)
+                Text("Registar Data", color = Color.White)
             }
 
             dialogMessage?.let { message ->

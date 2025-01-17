@@ -98,7 +98,7 @@ fun UserDashboardScreen(navController: NavController) {
                             ) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.calendario),
-                                    contentDescription = "Registrar Data no Calendário",
+                                    contentDescription = "Registar Data no Calendário",
                                     tint = darkSeaGreen,
                                     modifier = Modifier.size(60.dp)
                                 )
