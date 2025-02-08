@@ -5,8 +5,9 @@ O desenvolvimento foi realizado utilizando Android Studio com Jetpack Compose, p
 
 ## Equipe de Desenvolvimento 🛠️
 
-- **Roberto Rodrigues** - Aluno: 5278 🧑‍💻
 - **Victor Destefani** - Aluno: 18586 🧑‍💻
+
+- **Roberto Rodrigues** - Aluno: 5278 🧑‍💻
 - **Fernando Moura** - Aluno: 1154 🧑‍💻
 
 # Descrição 🗒️
